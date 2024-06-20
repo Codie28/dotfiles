@@ -18,4 +18,6 @@ alias lsym="ls -la | grep '\->'"
 
 EDITOR="nvim"
 
+[[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
+
 # neofetch
