@@ -88,17 +88,10 @@ groups = (
     Group('1', label=' DEV', layout='monadtall'),
     Group('2', label='󰖟 WWW', layout='monadtall'),
     Group('3', label=' SYS', layout='monadtall'),
-    Group('4', label='', layout='monadtall'),
-    Group('5', label=' MUS', layout='monadwide'),
-    Group('6', label='󰎴 ', layout='monadtall'),
-    Group('7', label='󰎷 ', layout='monadtall'),
-    # ScratchPad('scratchpad', [DropDown(
-    #    'term', MYTERM, width=0.9, height=0.9,
-    #    x=0.05, y=0.05, opacity=1.0, on_focus_lost_hide=False
-    #)])
+    Group('4', label=' MUS', layout='monadwide'),
 )
 
-for i, group in enumerate(groups[:-1], 1):
+for i, group in enumerate(groups, 1):
     keys.append(Key([MOD], str(i), lazy.group[group.name].toscreen()))
     keys.append(Key([MOD, "shift"], str(i), lazy.window.togroup(group.name)))
 
