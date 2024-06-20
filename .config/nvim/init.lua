@@ -1,2 +1,1 @@
-print("start")
 require("codie")

@@ -12,7 +12,21 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local plug = {}
-
+local plug = {
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  {
+    "shaunsingh/moonlight.nvim"
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate"
+  },
+  {
+    "mbbill/undotree"
+  },
+}
 
 require("lazy").setup(plug)
