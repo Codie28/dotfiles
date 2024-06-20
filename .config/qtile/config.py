@@ -39,6 +39,7 @@ EDITOR = "nvim"
 BROWSER = "firefox"
 EXPLORER = "thunar"
 WPMGR = "nitrogen"
+SOUNDMGR = "alsamixer"
 
 FONT = "JetBrainsMono Nerd Font"
 
@@ -72,6 +73,7 @@ keys = [
     Key([MOD, ALT], "b", lazy.spawn(BROWSER), desc="Open browser"),
     Key([MOD, ALT], "e", lazy.spawn(EXPLORER), desc="Open file explorer"),
     Key([MOD, ALT], "w", lazy.spawn(WPMGR), desc="Open wallpaper manager"),
+    Key([MOD, ALT], "s", lazy.spawn(f"{TERM} -e {SOUNDMGR}"), desc="Open sound mixer in terminal"),
 
     Key([MOD], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
