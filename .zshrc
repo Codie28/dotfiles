@@ -3,6 +3,11 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/lean.toml)"
 
 export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    export LS_COLORS="$LS_COLORS:ow=30;44:"
+
+
 alias ls="ls --color=auto"
 alias ll="ls -lA"
 alias la="ls -a"
