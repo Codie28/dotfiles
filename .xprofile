@@ -1,0 +1,4 @@
+setxkbmap -layout tr
+xmodmap ~/.xmodmap
+nitrogen --restore
+picom -f -o=0 &
