@@ -6,7 +6,7 @@ idk what to put here :4
 
  - Main keys:
     * Qtile: Win/Super
-    * Tmux : ctrl+A
+    * Tmux : CTRL+A
 
 **Used Tools/Packages**
 
