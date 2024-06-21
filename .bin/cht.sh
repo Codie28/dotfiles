@@ -8,7 +8,8 @@ printf "Selected: $selec\n"
 read -p "Query: " query
 
 if echo $langs | grep -qs $selec; then
-  curl cht.sh/$selec/`echo $query | tr ' ' '+'`
+  query=`echo $query | tr ' ' '+'`
+  tmux neww bash -c "curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
 else
-  curl cht.sh/$selec~$query 
+  tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
 fi
