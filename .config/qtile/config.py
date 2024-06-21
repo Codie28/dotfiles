@@ -31,8 +31,14 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-MOD = "mod4"
-ALT = "mod1"
+ALT  = "mod1"
+NUM  = "mod2" 
+
+MOD  = "mod4"
+ALTG = "mod5"
+CTRL = "control"
+SFT  = "shift"
+LOCK = "lock"
 
 TERM = "alacritty"
 EDITOR = "nvim"
@@ -53,20 +59,20 @@ keys = [
     Key([MOD], "k", lazy.layout.up(), desc="Move focus up"),
     Key([MOD], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
-    Key([MOD, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([MOD, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([MOD, SFT], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([MOD, SFT], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([MOD, SFT], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([MOD, SFT], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
-    Key([MOD, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([MOD, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([MOD, CTRL], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([MOD, CTRL], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([MOD, CTRL], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([MOD, CTRL], "k", lazy.layout.grow_up(), desc="Grow window up"),
 
     Key([MOD], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([MOD], "d", lazy.layout.normalize(), desc=""),
 
-    Key([MOD, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
+    Key([MOD, SFT], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
     Key([MOD], "Return", lazy.spawn(TERM), desc="Launch terminal"),
     Key([MOD, ALT], "v", lazy.spawn(f"{TERM} -e {EDITOR}"), desc="Open editor in terminal"),
@@ -79,9 +85,11 @@ keys = [
     Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
     Key([MOD], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-    Key([MOD, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([MOD, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([MOD, CTRL], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([MOD, CTRL], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+    #Key(["mod3"], "t", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
 groups = (
@@ -93,7 +101,7 @@ groups = (
 
 for i, group in enumerate(groups, 1):
     keys.append(Key([MOD], str(i), lazy.group[group.name].toscreen()))
-    keys.append(Key([MOD, "shift"], str(i), lazy.window.togroup(group.name)))
+    keys.append(Key([MOD, SFT], str(i), lazy.window.togroup(group.name)))
 
 layout_theme = {
     "border_width": 1,

@@ -3,7 +3,7 @@
 # Wasted 1 hour dor it to be useless
 # echo "$(zellij ls | awk '{print $1}' | sed 's/\[32;1//g' | sed 's/\[m//g' | sort -r | fzf)"
 
-selected=`find $HOME/Projects -maxdepth 1 -mindepth 1 | sort -r | fzf`
+selected=`find ~/Projects -maxdepth 1 -mindepth 1 | sort -r | fzf`
 
 if [[ -z $selected ]] then
   echo 1

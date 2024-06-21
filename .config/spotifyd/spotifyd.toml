@@ -1,0 +1,8 @@
+[global]
+  username = "CodeTyper"
+  #password = ""
+  backend = alsa 
+  device_name = "Arch-spotifyd"
+  bitrate = 320
+  #volume-normalisation = true
+  #normalisation-pregain = -10
