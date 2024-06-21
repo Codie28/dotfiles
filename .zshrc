@@ -20,4 +20,10 @@ EDITOR="nvim"
 
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
+if [[ -z $TMUX ]] then
+  tmux
+else
+  echo inside tmux lmao
+fi
+
 # neofetch
