@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Wasted 1 hour dor it to be useless
+# echo "$(zellij ls | awk '{print $1}' | sed 's/\[32;1//g' | sed 's/\[m//g' | sort -r | fzf)"
+
+selected=`find $HOME/Projects -maxdepth 1 -mindepth 1 | sort -r | fzf`
+
+if [[ -z $selected ]] then
+  echo 1
+  exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+tmux switch-client -t $selected_name

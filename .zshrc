@@ -16,14 +16,12 @@ alias ip='ip --color=auto'
 #List Symlinks
 alias lsym="ls -la | grep '\->'"
 
-EDITOR="nvim"
+export EDITOR="nvim"
 
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
 if [[ -z $TMUX ]] then
-  tmux
-else
-  echo inside tmux lmao
+ tmux
 fi
 
 # neofetch
