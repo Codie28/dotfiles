@@ -6,8 +6,9 @@ Quirks and Stuff
 ----------------
 
  - Main keys:
-    * Qtile: Win/Super
-    * Tmux : CTRL+A
+    * Qtile       : Win/Super
+    * Tmux        : CTRL+A
+    * Tmux / Nvim : Meta
 
 Used Tools/Packages
 -------------------

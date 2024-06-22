@@ -88,8 +88,6 @@ keys = [
     Key([MOD, CTRL], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD, CTRL], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-
-    #Key(["mod3"], "t", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
 groups = (
@@ -97,6 +95,7 @@ groups = (
     Group('2', label='󰖟 WWW', layout='monadtall'),
     Group('3', label=' SYS', layout='monadtall'),
     Group('4', label=' MUS', layout='monadwide'),
+    Group('5', label=' SOC', layout='monadwide'),
 )
 
 for i, group in enumerate(groups, 1):

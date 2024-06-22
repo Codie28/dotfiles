@@ -35,6 +35,23 @@ local plug = {
       "nvim-tree/nvim-web-devicons",
     }
   },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<M-l>",	"<cmd>TmuxNavigateLeft<cr>" },
+      { "<M-j>",	"<cmd>TmuxNavigateDown<cr>" },
+      { "<M-k>",	"<cmd>TmuxNavigateUp<cr>" },
+      { "<M-l>",	"<cmd>TmuxNavigateRight<cr>" },
+      { "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+    },
+  }
 }
 
 require("lazy").setup(plug)
