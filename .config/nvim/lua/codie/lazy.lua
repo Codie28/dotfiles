@@ -27,6 +27,14 @@ local plug = {
   {
     "mbbill/undotree"
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    }
+  },
 }
 
 require("lazy").setup(plug)
