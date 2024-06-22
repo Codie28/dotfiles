@@ -3,7 +3,10 @@
 # Wasted 1 hour dor it to be useless
 # echo "$(zellij ls | awk '{print $1}' | sed 's/\[32;1//g' | sed 's/\[m//g' | sort -r | fzf)"
 
-selected=`find ~/Projects ~/dots/.config -maxdepth 1 -mindepth 1 -type d | sort -r | fzf --preview "ls {}"`
+PROJ_FOLDERS=`echo ~/git ~/projects ~/dots ~/dots/.config`
+EXTR_FOLDERS=`echo ~/ ~/dots`
+
+selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sed 's/\/home/~/' | sort -r | fzf --preview "ls {}"`
 
 if [[ -z $selected ]] then
   exit 0
