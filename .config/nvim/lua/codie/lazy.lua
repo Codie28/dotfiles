@@ -45,7 +45,7 @@ local plug = {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<M-l>",	"<cmd>TmuxNavigateLeft<cr>" },
+      { "<M-h>",	"<cmd>TmuxNavigateLeft<cr>" },
       { "<M-j>",	"<cmd>TmuxNavigateDown<cr>" },
       { "<M-k>",	"<cmd>TmuxNavigateUp<cr>" },
       { "<M-l>",	"<cmd>TmuxNavigateRight<cr>" },
