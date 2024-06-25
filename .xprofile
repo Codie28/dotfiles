@@ -1,5 +1,5 @@
 setxkbmap -layout tr
 xmodmap ~/.xmodmap
 nitrogen --restore
-picom -f -o=0 &
+picom -f --vsync -o=0 &
 wal -R
