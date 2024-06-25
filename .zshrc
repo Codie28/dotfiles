@@ -18,6 +18,10 @@ alias lsym="ls -la | grep '\->'"
 
 export EDITOR="nvim"
 
+# `wal` things
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
+
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
 if [[ -z $TMUX ]] then

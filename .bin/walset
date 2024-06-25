@@ -1,0 +1,10 @@
+#!/bin/bash
+if [[ $# -eq 0 ]] then
+  exit
+else
+  wp=$1
+fi
+
+wal -i $wp 
+#nitrogen
+pkill -SIGUSR1 qtile

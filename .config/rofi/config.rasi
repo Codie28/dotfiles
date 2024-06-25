@@ -1,0 +1,6 @@
+configuration {
+    display-drun: "Test:";
+    font: "JetBrainsMonoNerdFontMono-Regular 13";
+  }
+
+  @theme "/dev/null"

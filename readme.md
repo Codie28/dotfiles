@@ -13,11 +13,11 @@ Quirks and Stuff
 Used Tools/Packages
 -------------------
 
-`sudo pacman -S alacritty bitwarden firefox man neofetch neovim qtile thunar stow zoxide tree tmux jq fzf`
+`sudo pacman -S alacritty bitwarden firefox man neofetch neovim qtile thunar stow zoxide tree tmux jq fzf ripgrep stow rofi`
 
 Some Tools/Packages I wanna try
 -------------------------------
 
  - Hyprland: *Window manager*
  - nushell : *everything is data shell*
-
+ - waybar  : BAARRRRR

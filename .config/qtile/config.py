@@ -30,6 +30,7 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import os.path
 
 ALT  = "mod1"
 NUM  = "mod2" 
@@ -40,14 +41,34 @@ CTRL = "control"
 SFT  = "shift"
 LOCK = "lock"
 
-TERM = "alacritty"
-EDITOR = "nvim"
-BROWSER = "firefox"
-EXPLORER = "thunar"
-WPMGR = "nitrogen"
-SOUNDMGR = "alsamixer"
+TERM      = "alacritty"
+EDITOR    = "nvim"
+BROWSER   = "firefox"
+EXPLORER  = "thunar"
+WPMGR     = "nitrogen"
+SOUNDMGR  = "alsamixer"
+APP_LNCHR = "myrofi"
 
 FONT = "JetBrainsMono Nerd Font"
+
+colors = []
+cache= os.path.expanduser('~/.cache/wal/colors')
+def load_colors(cache):
+    with open(cache, 'r') as file:
+        for i in range(16):
+            colors.append(file.readline().strip())
+    colors.append('#ffffff')
+    lazy.reload()
+load_colors(cache)
+
+border_focus   = colors[2]
+border_normal  = colors[9]
+
+bar_border     = colors[3]
+
+group_active   = colors[4]
+group_inactive = "a0a0a0" # colors[8]
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -75,6 +96,8 @@ keys = [
     Key([MOD, SFT], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
     Key([MOD], "Return", lazy.spawn(TERM), desc="Launch terminal"),
+    Key([MOD], "space", lazy.spawn(APP_LNCHR), desc="Open app launcher"),
+
     Key([MOD, ALT], "v", lazy.spawn(f"{TERM} -e {EDITOR}"), desc="Open editor in terminal"),
     Key([MOD, ALT], "b", lazy.spawn(BROWSER), desc="Open browser"),
     Key([MOD, ALT], "e", lazy.spawn(EXPLORER), desc="Open file explorer"),
@@ -86,6 +109,7 @@ keys = [
     Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
     Key([MOD], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([MOD, CTRL], "r", lazy.reload_config(), desc="Reload the config"),
+
     Key([MOD, CTRL], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
@@ -105,8 +129,8 @@ for i, group in enumerate(groups, 1):
 layout_theme = {
     "border_width": 1,
     "margin": 9,
-    "border_focus": "ffaaaa",
-    "border_normal": "fefefe"
+    "border_focus":  border_focus,
+    "border_normal": border_normal,
 }
 
 layouts = [
@@ -145,8 +169,8 @@ screens = [
                     font=FONT,
                     spacing=5,
                     disable_drag=True,
-                    active="ffccff",
-                    inactive="a1a1a1",
+                    active=group_active,
+                    inactive=group_inactive,
                     rounded=True,
                     highlight_method="block",
                     this_current_screen_border="daccda3a",
@@ -160,7 +184,9 @@ screens = [
                     padding_y=7,
                 ),
                 widget.Prompt(),
+                widget.Spacer(),
                 widget.WindowName(),
+                widget.Spacer(),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
@@ -172,7 +198,9 @@ screens = [
             ],
             30,
             background="00000000",
-            margin= [6,9,6,9]
+            margin= [6, 9, 6, 9],
+            border_color = [bar_border, bar_border, bar_border, bar_border],
+            border_width = [1, 1, 1, 1],
         ),
     ),
 ]
