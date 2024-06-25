@@ -47,7 +47,7 @@ BROWSER   = "firefox"
 EXPLORER  = "thunar"
 WPMGR     = "nitrogen"
 SOUNDMGR  = "alsamixer"
-APP_LNCHR = "myrofi"
+APP_LNCHR = os.path.expanduser('~/.bin/myrofi')
 
 FONT = "JetBrainsMono Nerd Font"
 

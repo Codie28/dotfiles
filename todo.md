@@ -1,0 +1,4 @@
+ - [ ] Configure rofi
+   - [ ] do theming
+   - [ ] add passwd manager (with bw)
+- [ ] theme discord
