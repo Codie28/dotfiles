@@ -5,6 +5,6 @@ else
   wp=$1
 fi
 
-wal -i $wp 
+wal -a 30 -i $wp 
 #nitrogen
 pkill -SIGUSR1 qtile
