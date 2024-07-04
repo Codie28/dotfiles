@@ -1,4 +1,5 @@
 eval "$(zoxide init zsh)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/lean.toml)"
 
 eval "$(dircolors)"
 
@@ -16,7 +17,6 @@ alias ip='ip --color=auto'
 alias lsym="ls -la | grep '\->'"
 
 export EDITOR="nvim"
-
 
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
 
