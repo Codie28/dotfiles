@@ -1,6 +1,0 @@
-configuration {
-    display-drun: "Applications";
-    font: "JetBrainsMonoNerdFontMono-Regular 13";
-  }
-
-  @theme "~/.cache/wal/colors-rofi-light.rasi"
