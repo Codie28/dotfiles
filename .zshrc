@@ -17,6 +17,7 @@ alias ip='ip --color=auto'
 alias lsym="ls -la | grep '\->'"
 
 export EDITOR="nvim"
+export PAGER="less"
 
 # `wal` things
 (cat ~/.cache/wal/sequences &)
