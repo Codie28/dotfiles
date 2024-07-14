@@ -27,7 +27,7 @@
 # SOFTWARE.
 
 from libqtile import bar, layout, qtile, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 import os.path
@@ -47,7 +47,11 @@ BROWSER   = "firefox"
 EXPLORER  = "thunar"
 WPMGR     = "nitrogen"
 SOUNDMGR  = "alsamixer"
+
 APP_LNCHR = os.path.expanduser('~/.bin/myrofi')
+SSH_LNCHR = os.path.expanduser('~/.bin/myrofi')
+BIN_LNCHR = os.path.expanduser('~/.bin/myrofi')
+PSW_LNCHR = os.path.expanduser('~/.bin/myrofi')
 
 FONT = "JetBrainsMono Nerd Font"
 
@@ -71,8 +75,6 @@ group_inactive = "a0a0a0" # colors[8]
 
 
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
 
     Key([MOD], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([MOD], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -91,27 +93,36 @@ keys = [
     Key([MOD, CTRL], "k", lazy.layout.grow_up(), desc="Grow window up"),
 
     Key([MOD], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([MOD], "d", lazy.layout.normalize(), desc=""),
-
+    Key([MOD], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([MOD, SFT], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
-    Key([MOD], "Return", lazy.spawn(TERM), desc="Launch terminal"),
-    Key([MOD], "space", lazy.spawn(APP_LNCHR), desc="Open app launcher"),
+    Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
+    Key([MOD], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
 
-    Key([MOD, ALT], "v", lazy.spawn(f"{TERM} -e {EDITOR}"), desc="Open editor in terminal"),
+
+    KeyChord([MOD], "space", [
+        Key([], "a", lazy.spawn(APP_LNCHR), desc="Open app launcher"),
+        Key([], "s", lazy.spawn(SSH_LNCHR), desc="Open ssh launcher"),
+        Key([], "c", lazy.spawn(BIN_LNCHR), desc="Open password launcher"),
+        Key([], "p", lazy.spawn(PSW_LNCHR), desc="Open password launcher"),
+    ]),
+
+    Key([MOD], "Return", lazy.spawn(TERM), desc="Launch terminal"),
+
     Key([MOD, ALT], "b", lazy.spawn(BROWSER), desc="Open browser"),
     Key([MOD, ALT], "e", lazy.spawn(EXPLORER), desc="Open file explorer"),
     Key([MOD, ALT], "w", lazy.spawn(WPMGR), desc="Open wallpaper manager"),
     Key([MOD, ALT], "s", lazy.spawn(f"{TERM} -e {SOUNDMGR}"), desc="Open sound mixer in terminal"),
+    # Key([MOD, ALT], "v", lazy.spawn(f"{TERM} -e {EDITOR}"), desc="Open editor in terminal"),
 
-    Key([MOD], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
-    Key([MOD], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([MOD, CTRL], "r", lazy.reload_config(), desc="Reload the config"),
-
     Key([MOD, CTRL], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+
     Key([MOD], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+    # TODO: Use MOD + a/s/d to switch between monitors when you find a way to do it
+    # a = 2nd (if we ever get one), s = 0th, d = 1st,
 ]
 
 groups = (
@@ -123,8 +134,10 @@ groups = (
 )
 
 for i, group in enumerate(groups, 1):
-    keys.append(Key([MOD], str(i), lazy.group[group.name].toscreen()))
-    keys.append(Key([MOD, SFT], str(i), lazy.window.togroup(group.name)))
+    keys.append(Key([MOD],      str(i), lazy.group[group.name].toscreen(),
+                    desc=f"Switch to group {i}"))
+    keys.append(Key([MOD, SFT], str(i), lazy.window.togroup(group.name),
+                    desc=f"Move focused window to group {i}"))
 
 layout_theme = {
     "border_width": 1,
