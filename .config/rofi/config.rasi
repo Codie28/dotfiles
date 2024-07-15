@@ -1,5 +1,6 @@
 configuration {
     display-drun: "Applications";
+    display-run: "Binaries";
     font: "JetBrainsMonoNerdFontMono-Regular 13";
   }
 

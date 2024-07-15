@@ -48,10 +48,10 @@ EXPLORER  = "thunar"
 WPMGR     = "nitrogen"
 SOUNDMGR  = "alsamixer"
 
-APP_LNCHR = os.path.expanduser('~/.bin/myrofi')
-SSH_LNCHR = os.path.expanduser('~/.bin/myrofi')
-BIN_LNCHR = os.path.expanduser('~/.bin/myrofi')
-PSW_LNCHR = os.path.expanduser('~/.bin/myrofi')
+APP_LNCHR = os.path.expanduser('~/.bin/myrofi') + " app"
+SSH_LNCHR = os.path.expanduser('~/.bin/myrofi') + " ssh"
+BIN_LNCHR = os.path.expanduser('~/.bin/myrofi') + " bin"
+PSW_LNCHR = os.path.expanduser('~/.bin/myrofi') + " psw"
 
 FONT = "JetBrainsMono Nerd Font"
 
@@ -80,7 +80,7 @@ keys = [
     Key([MOD], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([MOD], "j", lazy.layout.down(), desc="Move focus down"),
     Key([MOD], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([MOD], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    # Key([MOD], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
     Key([MOD, SFT], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([MOD, SFT], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
@@ -97,16 +97,13 @@ keys = [
     Key([MOD, SFT], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
     Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
     Key([MOD], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([MOD], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
 
 
-    KeyChord([MOD], "space", [
-        Key([], "a", lazy.spawn(APP_LNCHR), desc="Open app launcher"),
-        Key([], "s", lazy.spawn(SSH_LNCHR), desc="Open ssh launcher"),
-        Key([], "c", lazy.spawn(BIN_LNCHR), desc="Open password launcher"),
-        Key([], "p", lazy.spawn(PSW_LNCHR), desc="Open password launcher"),
-    ]),
+    Key([MOD], "space", lazy.spawn(APP_LNCHR), desc="Open app launcher"),
+    Key([MOD], "o", lazy.spawn(SSH_LNCHR), desc="Open ssh launcher"),
+    Key([MOD], "p", lazy.spawn(PSW_LNCHR), desc="Open password launcher"),
 
     Key([MOD], "Return", lazy.spawn(TERM), desc="Launch terminal"),
 

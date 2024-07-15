@@ -1,3 +1,21 @@
 #!/bin/bash
 
-rofi -show drun -matching fuzzy
+if [[ -z $1 ]] then
+  MODE="app"
+else
+  MODE=$1
+fi
+
+case $MODE in
+  "app")
+    rofi -show drun -matching fuzzy
+  ;;
+  "bin")
+    rofi -show run
+  ;;
+  "ssh")
+  ;;
+  "psw")
+  ;;
+esac
+
