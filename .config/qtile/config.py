@@ -50,7 +50,6 @@ SOUNDMGR  = "alsamixer"
 
 APP_LNCHR = os.path.expanduser('~/.bin/myrofi') + " app"
 SSH_LNCHR = os.path.expanduser('~/.bin/myrofi') + " ssh"
-BIN_LNCHR = os.path.expanduser('~/.bin/myrofi') + " bin"
 PSW_LNCHR = os.path.expanduser('~/.bin/myrofi') + " psw"
 
 FONT = "JetBrainsMono Nerd Font"

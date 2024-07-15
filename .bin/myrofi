@@ -10,12 +10,10 @@ case $MODE in
   "app")
     rofi -show drun -matching fuzzy
   ;;
-  "bin")
-    rofi -show run
-  ;;
   "ssh")
   ;;
   "psw")
+    bwmenu
   ;;
 esac
 
