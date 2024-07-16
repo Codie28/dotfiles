@@ -22,3 +22,7 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 6
 
 vim.opt.colorcolumn = "80"
+
+-- VIM-TMUX NAV
+vim.g.tmux_navigator_no_mappings = 1
+
