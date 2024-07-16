@@ -6,7 +6,11 @@
 PROJ_FOLDERS=`echo ~/git ~/Projects ~/dots ~/dots/.config ~/test`
 EXTR_FOLDERS=`echo ~/ ~/dots ~/git ~/test`
 
-selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sort -r | fzf --preview "ls -A {}"`
+if [[ -n $1 ]] then
+  selected=$1
+else
+  selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sort -r | fzf --preview "ls -A {}"`
+fi
 
 if [[ -z $selected ]] then
   exit 0

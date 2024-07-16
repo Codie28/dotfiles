@@ -1,5 +1,5 @@
  - [x] Configure rofi
    - [x] do theming
-   - [ ] add passwd manager (with bw)
+   - [x] add passwd manager (with bw)
 - [ ] theme discord
 - [ ] theme firefox
