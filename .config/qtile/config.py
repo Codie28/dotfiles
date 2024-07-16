@@ -76,20 +76,20 @@ group_inactive = "a0a0a0" # colors[8]
 keys = [
 
     Key([MOD], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([MOD], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([MOD], "j", lazy.layout.down(), desc="Move focus down"),
     Key([MOD], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([MOD], "l", lazy.layout.right(), desc="Move focus to right"),
     # Key([MOD], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
     Key([MOD, SFT], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([MOD, SFT], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([MOD, SFT], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([MOD, SFT], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([MOD, SFT], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
 
     Key([MOD, CTRL], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([MOD, CTRL], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([MOD, CTRL], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([MOD, CTRL], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([MOD, CTRL], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
 
     Key([MOD], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([MOD], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
