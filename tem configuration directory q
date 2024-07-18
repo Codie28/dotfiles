@@ -1,0 +1,51 @@
+[4mSDDM[24m(1)                                                                      sddm                                                                     [4mSDDM[24m(1)
+
+[1mNAME[0m
+       sddm - the simple desktop display manager
+
+[1mSYNOPSIS[0m
+       sddm [OPTIONS...]
+
+[1mDESCRIPTION[0m
+       sddm is a display and login manager based on Qt technologies.
+
+       Using QtQuick and QML, designers are given the ability to easily create pleasant, modern looking interfaces for sddm.
+
+       sddm runs the greeter as a system user named [1msddm [22mwhose home directory needs to be set to [1m/var/lib/sddm[22m.
+
+       If pam and systemd are available, the greeter will go through logind, which will give it access to drm devices.
+
+       Distributions  without pam and systemd will need to put the [1msddm [22muser into the [1mvideo [22mgroup, otherwise errors regarding GL and drm devices might be ex‐
+       perienced.
+
+       For X11 sessions, the cookie for X authorization is written into a temporary file [4m/tmp/xauth_XXXXXX[24m, owned and only accessible by the user.
+
+[1mOPTIONS[0m
+       [1m--test-mode[0m
+              Start daemon in test mode.
+
+       [1m--example-config[0m
+              Print the complete current configuration to stdout
+
+       [1m--help[22m, [1m-h[0m
+              Show help message and exit.
+
+[1mFILES[0m
+       [1m/usr/lib/sddm/sddm.conf.d[0m
+              System configuration directory
+
+       [1m/etc/sddm.conf.d[0m
+              Local configuration directory
+
+       [1m/etc/sddm.conf[0m
+              Local configuration file for compatibility
+
+       [1m/usr/share/sddm/themes[0m
+              Where sddm looks for themes
+
+[1mSEE ALSO[0m
+       [1msddm.conf[22m(5)
+
+       The full documentation for sddm is available at [4mhttps://github.com/sddm/sddm[0m
+
+sddm 0.21.0                                                                May 2014                                                                   [4mSDDM[24m(1)

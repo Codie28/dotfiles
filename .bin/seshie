@@ -4,12 +4,12 @@
 # echo "$(zellij ls | awk '{print $1}' | sed 's/\[32;1//g' | sed 's/\[m//g' | sort -r | fzf)"
 
 PROJ_FOLDERS=`echo ~/git ~/Projects ~/dots ~/dots/.config ~/test`
-EXTR_FOLDERS=`echo ~/ ~/dots ~/git ~/test`
+EXTR_FOLDERS=`echo ~/ ~/dots ~/git ~/test /etc`
 
 if [[ -n $1 ]] then
   selected=$1
 else
-  selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sort -r | fzf --preview "ls -A {}"`
+  selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sort -r | fzf --tmux top,70%,45% --preview "ls -A {}"`
 fi
 
 if [[ -z $selected ]] then
