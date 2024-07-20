@@ -1,0 +1,6 @@
+#!/bin/python3
+
+print("[*] Bootstrapping dotfiles")
+print("[*] Installing stow")
+
+pkgmgr = [ "pacman", "apt-get", "pkg"]

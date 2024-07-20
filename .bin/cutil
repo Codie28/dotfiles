@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [[ -z $1 ]] then
+  printf "cutil: no operation entered"
+else
+  if [[ $1 == "dotstrap" ]] then
+    python3 $0s/dotstrap
+  fi
+  if [[ $1 == "help" ]] then
+    ls $0s
+  fi
+fi
