@@ -41,7 +41,7 @@ CTRL = "control"
 SFT  = "shift"
 LOCK = "lock"
 
-TERM      = "alacritty"
+TERM      = "kitty"
 EDITOR    = "nvim"
 BROWSER   = "firefox"
 EXPLORER  = "thunar"
