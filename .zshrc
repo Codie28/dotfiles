@@ -34,3 +34,6 @@ if [[ -z $TMUX ]] then
 fi
 
 # neofetch
+
+# BREWW
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
