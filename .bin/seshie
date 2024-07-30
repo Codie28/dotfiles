@@ -3,7 +3,7 @@
 # Wasted 1 hour for it to be useless
 # echo "$(zellij ls | awk '{print $1}' | sed 's/\[32;1//g' | sed 's/\[m//g' | sort -r | fzf)"
 
-PROJ_FOLDERS=`echo ~/projects ~/personal ~/work ~/test`
+PROJ_FOLDERS=`echo ~/projects ~/personal ~/work ~/playground`
 EXTR_FOLDERS=`echo ~/ ~/dots ~/etcs ~/git`
 
 if [[ -n $1 ]] then
