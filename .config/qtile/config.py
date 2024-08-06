@@ -36,7 +36,6 @@ from style import (
     COLORSCHEME,
     FONT
 )
-logger.warning(f"color: {COLORSCHEME}")
 from keys import (
     keys,
     mouse,
@@ -46,12 +45,19 @@ from keys import (
 from screens import screens
 
 
+# NOTE: for polybar to show the icons, they need to be the same???
 groups = (
     Group('', label='', layout='monadtall'),
-    Group('󰖟', label='󰖟', layout='monadtall'),
+    Group('󰖟', label='󰖟', layout='monadtall',
+          matches=[Match(wm_class="firefox")]
+    ),
     Group('', label='', layout='monadtall'),
-    Group('', label='', layout='monadwide'),
-    Group('󱅯', label='󱅯', layout='monadwide'),
+    Group('', label='', layout='monadwide',
+          matches=[Match(wm_class="Spotify")]
+    ),
+    Group('󱅯', label='󱅯', layout='monadwide'
+          matches=[Match(wm_class="discord")]
+    ),
     Group('', label='', layout='monadwide'),
 )
 
