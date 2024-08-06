@@ -27,7 +27,7 @@
 # SOFTWARE.
 
 from libqtile import bar, layout, qtile, widget
-from libqtile.config import Group, Match, Screen, ScratchPad
+from libqtile.config import Group, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
 
@@ -36,29 +36,42 @@ from style import (
     COLORSCHEME,
     FONT
 )
+logger.warning(f"color: {COLORSCHEME}")
 from keys import (
     keys,
     mouse,
-    group_keys
+    group_keys,
+    TERM
 )
 from screens import screens
 
 
 groups = (
-    Group('1', label='', layout='monadtall'),
-    Group('2', label='󰖟', layout='monadtall'),
-    Group('3', label='', layout='monadtall'),
-    Group('4', label='', layout='monadwide'),
-    Group('5', label='󱅯', layout='monadwide'),
-    Group('v', label='', layout='monadwide'),
+    Group('', label='', layout='monadtall'),
+    Group('󰖟', label='󰖟', layout='monadtall'),
+    Group('', label='', layout='monadtall'),
+    Group('', label='', layout='monadwide'),
+    Group('󱅯', label='󱅯', layout='monadwide'),
+    Group('', label='', layout='monadwide'),
 )
 
 keys.extend(
     group_keys(groups)
 )
 
+#   groups = groups + (
+#       ScratchPad("pad", [
+#           DropDown("term", TERM,
+#               opacity=1,
+#               x=0.1, y=0,
+#               width=0.8, height=0.6,
+#           ),
+#       ]),
+#       # xxx: this ',' prevents the config from crashing
+#   )
+
 layout_theme = {
-    "border_width": 0,
+    "border_width": 3,
     "margin": 9,
     "border_focus":  COLORS["win_border_focus"][COLORSCHEME],
     "border_normal": COLORS["win_border_normal"][COLORSCHEME],

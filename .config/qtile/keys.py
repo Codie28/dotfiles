@@ -23,6 +23,7 @@ SSH_LNCHR = os.path.expanduser('~/.bin/myrofi') + " ssh"
 PSW_LNCHR = os.path.expanduser('~/.bin/myrofi') + " psw"
 
 keys = [
+  # Key([],         'F11',    lazy.group['pad'].dropdown_toggle('term')),
 
     Key([MOD],      "h",      lazy.layout.left()),
     Key([MOD],      "j",      lazy.layout.down()),
@@ -75,8 +76,7 @@ mouse = [
 
 def group_keys(groups):
     key = []
-    for _, group in enumerate(groups, 1):
-        i = group.name
+    for i, group in enumerate(groups, 1):
         key.extend([
             Key([MOD],      str(i), lazy.group[group.name].toscreen()),
             Key([MOD, SFT], str(i), lazy.window.togroup(group.name))
