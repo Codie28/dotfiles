@@ -20,20 +20,12 @@ alias godot="godot --rendering-driver opengl3"
 #List Symlinks
 alias lsym="ls -la | grep '\->'"
 
+alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+
 export EDITOR="nvim"
 export PAGER="less"
 
-# `wal` things
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
-
 [[ -d $HOME/.bin ]] && export PATH=$HOME/.bin:$PATH
-
-if [[ -z $TMUX ]] then
- tmux
-fi
-
-# neofetch
 
 # BREWW
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
