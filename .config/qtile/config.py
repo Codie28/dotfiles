@@ -55,7 +55,7 @@ groups = (
     Group('', label='', layout='monadwide',
           matches=[Match(wm_class="Spotify")]
     ),
-    Group('󱅯', label='󱅯', layout='monadwide'
+    Group('󱅯', label='󱅯', layout='monadwide',
           matches=[Match(wm_class="discord")]
     ),
     Group('', label='', layout='monadwide'),
