@@ -73,7 +73,8 @@ mouse = [
 
 def group_keys(groups):
     key = []
-    for i, group in enumerate(groups, 1):
+    for _, group in enumerate(groups, 1):
+        i = group.label
         key.extend([
             Key([MOD],      str(i), lazy.group[group.name].toscreen()),
             Key([MOD, SFT], str(i), lazy.window.togroup(group.name))

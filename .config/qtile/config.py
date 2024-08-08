@@ -45,20 +45,21 @@ from keys import (
 from screens import screens
 
 
-# NOTE: for polybar to show the icons, they need to be the same???
+# NOTE:  polybar uses xworkspace name???
+# label as the key ig
 groups = (
-    Group('', label='', layout='monadtall'),
-    Group('󰖟', label='󰖟', layout='monadtall',
+    Group('', label='1', layout='monadtall'),
+    Group('󰖟', label='2', layout='monadtall',
           matches=[Match(wm_class="firefox")]
     ),
-    Group('', label='', layout='monadtall'),
-    Group('', label='', layout='monadwide',
+    Group('', label='3', layout='monadtall'),
+    Group('', label='4', layout='monadwide',
           matches=[Match(wm_class="Spotify")]
     ),
-    Group('󱅯', label='󱅯', layout='monadwide',
+    Group('󱅯', label='5', layout='monadwide',
           matches=[Match(wm_class="discord")]
     ),
-    Group('', label='', layout='monadwide'),
+    Group('', label='v', layout='monadwide'),
 )
 
 keys.extend(
