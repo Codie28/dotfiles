@@ -3,12 +3,9 @@ from libqtile.lazy import lazy
 import os
 
 ALT  = "mod1"
-NUM  = "mod2" 
 MOD  = "mod4"
-ALTG = "mod5"
 CTRL = "control"
 SFT  = "shift"
-LOCK = "lock"
 
 TERM      = "kitty"
 EDITOR    = "nvim"
@@ -51,7 +48,7 @@ keys = [
     Key([MOD],      "space",  lazy.spawn(APP_LNCHR)),
     Key([MOD],      "o",      lazy.spawn(SSH_LNCHR)),
     Key([MOD],      "p",      lazy.spawn(PSW_LNCHR)),
-    Key([MOD],      "r",      lazy.spawncmd()),
+  # Key([MOD],      "r",      lazy.spawncmd()),
 
     Key([MOD],      "Return", lazy.spawn(TERM)),
 
@@ -59,7 +56,7 @@ keys = [
     Key([MOD, ALT], "e",      lazy.spawn(EXPLORER)),
     Key([MOD, ALT], "w",      lazy.spawn(WPMGR)),
     Key([MOD, ALT], "m",      lazy.spawn(MUSICPLYR)),
-    Key([MOD, ALT], "s",      lazy.spawn(f"{TERM} -e {SOUNDMGR}")),
+  # Key([MOD, ALT], "s",      lazy.spawn(f"{TERM} -e {SOUNDMGR}")),
 
     Key([MOD, CTRL], "r",     lazy.reload_config()),
     Key([MOD, CTRL], "q",     lazy.shutdown()),
