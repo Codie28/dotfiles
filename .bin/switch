@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+if [[ -z $1 ]] then
+  CURRENT=`cat $HOME/.colorscheme`
+  echo $CURRENT
+  case $CURRENT in
+    "dark" ) NEW="light" ;;
+    "light") NEW="dark" ;;
+    *      ) NEW="dark" ;;
+  esac
+else
+  if [[ "$1" == "dark" || "$1" == "light" ]] then
+    NEW=$1
+  else
+    echo No such theme
+  fi
+fi
+
+echo Switching to $NEW theme 
+echo $NEW > $HOME/.colorscheme
+
+
+echo Refreshing polybar...
+echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
+$HOME/.config/polybar/startup.sh &
+
+sleep 1
+
+echo Setting wallpaper...
+WPFILE=`ls $HOME/wps/$NEW | sort | head -n 1`
+nitrogen --set-auto $HOME/wps/$NEW/$WPFILE
+
+echo Refreshing qtile...
+pkill -SIGUSR1 qtile
