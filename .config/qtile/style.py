@@ -15,7 +15,7 @@ DARK  = PALETTE.frappe.colors
 COLORS = {
     "win_border_normal"                        : [ LIGHT.crust.hex,     DARK.base.hex ],
     "win_border_focus"                         : [ LIGHT.base.hex,      DARK.overlay1.hex ],
-    "bar_border"                               : [ LIGHT.lavender.hex,  DARK.lavender.hex ],
+  # "bar_border"                               : [ LIGHT.lavender.hex,  DARK.lavender.hex ],
 
   # "layout_text"                              : [ LIGHT.maroon.hex,    DARK.yellow.hex ],
   # "clock_text"                               : [ LIGHT.text.hex,      DARK.text.hex ],
