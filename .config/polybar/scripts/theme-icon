@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CURRENT=`cat $HOME/.colorscheme`
+
+case $CURRENT in
+  "dark" ) ICON="" ;;
+  "light") ICON="" ;;
+  *      ) ICON="" ;;
+esac
+
+echo $ICON
