@@ -1,12 +1,11 @@
 vim.g.mapleader = ' '
 
-
 vim.keymap.set('n', '<leader>gs', function ()
   vim.cmd('Gwrite')
 end)
 
 vim.keymap.set('n', '<leader>gc', function ()
-  vim.cmd('Gwrite')
+  vim.cmd('Gread')
 end)
 
 vim.keymap.set('n', '<leader>gu', function ()
