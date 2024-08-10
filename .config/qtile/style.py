@@ -13,8 +13,8 @@ LIGHT = PALETTE.latte.colors
 DARK  = PALETTE.frappe.colors
 #                                                  LIGHT                DARK
 COLORS = {
-    "win_border_normal"                        : [ LIGHT.crust.hex,     DARK.base.hex ],
-    "win_border_focus"                         : [ LIGHT.base.hex,      DARK.overlay1.hex ],
+    "win_border_normal"                        : [ LIGHT.base.hex,     DARK.base.hex ],
+    "win_border_focus"                         : [ LIGHT.crust.hex,      DARK.overlay1.hex ],
   # "bar_border"                               : [ LIGHT.lavender.hex,  DARK.lavender.hex ],
 
   # "layout_text"                              : [ LIGHT.maroon.hex,    DARK.yellow.hex ],
