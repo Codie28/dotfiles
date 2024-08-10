@@ -20,6 +20,7 @@ THEMESWCHR = os.path.expanduser('~/.bin/switch')
 APP_LNCHR = os.path.expanduser('~/.bin/myrofi') + " app"
 SSH_LNCHR = os.path.expanduser('~/.bin/myrofi') + " ssh"
 PSW_LNCHR = os.path.expanduser('~/.bin/myrofi') + " psw"
+WIN_LNCHR = os.path.expanduser('~/.bin/myrofi') + " win"
 
 keys = [
   # Key([],         'F11',    lazy.group['pad'].dropdown_toggle('term')),
@@ -50,6 +51,7 @@ keys = [
     Key([MOD],      "space",  lazy.spawn(APP_LNCHR)),
     Key([MOD],      "o",      lazy.spawn(SSH_LNCHR)),
     Key([MOD],      "p",      lazy.spawn(PSW_LNCHR)),
+    Key([MOD],      "r",      lazy.spawn(WIN_LNCHR)),
   # Key([MOD],      "r",      lazy.spawncmd()),
 
     Key([MOD],      "Return", lazy.spawn(TERM)),

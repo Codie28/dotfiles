@@ -15,5 +15,8 @@ case $MODE in
   "psw")
     bwmenu
   ;;
+  "win")
+    rofi -show window
+  ;;
 esac
 
