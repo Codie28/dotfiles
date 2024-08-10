@@ -24,8 +24,6 @@ fi
 echo Switching to $NEW theme 
 echo $NEW > $HOME/.colorscheme
 
-echo \(re\)Loading bar
-
 killall -q polybar
 killall -q eww
 
@@ -39,7 +37,7 @@ case "$BAR" in
   "polybar")
     echo Refreshing polybar...
     echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
-    $HOME/.config/polybar/startup.sh &
+    $HOME/.config/polybar/startup.sh >/dev/null 2>/dev/null
     ;;
   "eww"    )
     echo Loading eww
@@ -58,7 +56,7 @@ sleep 1
 
 echo Setting wallpaper...
 WPFILE=`ls $HOME/wps/$NEW | sort | head -n 1`
-nitrogen --set-auto $HOME/wps/$NEW/$WPFILE
+nitrogen --set-auto $HOME/wps/$NEW/$WPFILE >/dev/null 2>/dev/null
 
 echo Refreshing qtile...
 pkill -SIGUSR1 qtile
@@ -66,7 +64,7 @@ pkill -SIGUSR1 qtile
 echo Themeing nvim...
 pkill -SIGUSR1 nvim
 
-echo Themeing kitty
+echo Themeing kitty...
 case "$NEW" in
   "light")
     kitten theme catppuccin-latte 
@@ -82,12 +80,12 @@ esac
 
 pkill -SIGUSR1 kitty
 
-echo Themeing spotify
-spicetify config current_theme catppuccin
-spicetify config color_scheme $SPICETIFY
-spicetify config inject_css 1 inject_theme_js 1 replace_colors 1 overwrite_assets 1
-spicetify apply
+echo Themeing spotify...
+spicetify config current_theme catppuccin >/dev/null
+spicetify config color_scheme $SPICETIFY >/dev/null
+spicetify config inject_css 1 inject_theme_js 1 replace_colors 1 overwrite_assets 1 >/dev/null
+spicetify apply >/dev/null
 
-echo Themeing discord
-echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css
+echo Themeing discord...
+echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css 
 
