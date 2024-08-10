@@ -8,8 +8,8 @@ function colormycursors()
   -- Pretty cangy fix but dont fix what ain't broke
   local themes =
   {
-    ["dark\n"]  = "catppuccin-frappe",
-    ["light\n"] = "catppuccin-latte" ,
+    ["frappe\n"] = "catppuccin-frappe",
+    ["latte\n"]  = "catppuccin-latte" ,
   }
 
   local vim_theme = themes[theme]

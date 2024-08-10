@@ -3,37 +3,39 @@ import os
 from libqtile.log_utils import logger
 
 FONT = "MesloLGS Nerd Font Mono"
-# 0: LIGHT
-# 1: DARK
+# 0: LATTE
+# 1: FRAPPE
 with open(os.path.expanduser('~/.colorscheme')) as f:
     file = f.read().split('\n')
-    COLORSCHEME = 1 if file[0] == 'dark' else 0
+    # TODO: make it work with more then two themes
+    COLORSCHEME = 1 if file[0] == 'frappe' else 0
 
-LIGHT = PALETTE.latte.colors
-DARK  = PALETTE.frappe.colors
-#                                                  LIGHT                DARK
+LATTE  = PALETTE.latte.colors
+FRAPPE = PALETTE.frappe.colors
+
+#                                                  LATTE                FRAPPE 
 COLORS = {
-    "win_border_normal"                        : [ LIGHT.base.hex,     DARK.base.hex ],
-    "win_border_focus"                         : [ LIGHT.crust.hex,      DARK.overlay1.hex ],
-  # "bar_border"                               : [ LIGHT.lavender.hex,  DARK.lavender.hex ],
+    "win_border_normal"                        : [ LATTE.base.hex,      FRAPPE.base.hex ],
+    "win_border_focus"                         : [ LATTE.crust.hex,     FRAPPE.overlay1.hex ],
+  # "bar_border"                               : [ LATTE.lavender.hex,  FRAPPE.lavender.hex ],
 
-  # "layout_text"                              : [ LIGHT.maroon.hex,    DARK.yellow.hex ],
-  # "clock_text"                               : [ LIGHT.text.hex,      DARK.text.hex ],
+  # "layout_text"                              : [ LATTE.maroon.hex,    FRAPPE.yellow.hex ],
+  # "clock_text"                               : [ LATTE.text.hex,      FRAPPE.text.hex ],
 
-  # "battery_percentage_text"                  : [ LIGHT.text.hex,      DARK.text.hex ],
-  # "battery_percentage_low_text"              : [ LIGHT.red.hex,       DARK.red.hex ],
-  # "battery_char"                             : [ LIGHT.green.hex,     DARK.green.hex ],
-  # "battery_char_low"                         : [ LIGHT.red.hex,       DARK.red.hex ],
+  # "battery_percentage_text"                  : [ LATTE.text.hex,      FRAPPE.text.hex ],
+  # "battery_percentage_low_text"              : [ LATTE.red.hex,       FRAPPE.red.hex ],
+  # "battery_char"                             : [ LATTE.green.hex,     FRAPPE.green.hex ],
+  # "battery_char_low"                         : [ LATTE.red.hex,       FRAPPE.red.hex ],
 
   # # NOTE: this is prep for qtile/qtile/issues/1243
-  # # CUrrently selected v
-  # "this_monitor_selected_screen_active"      : [ LIGHT.mauve.hex,     DARK.mauve.hex ],
-  # "this_monitor_selected_screen_inactive"    : [ "a0a0a0",            DARK.rosewater.hex ],
-  # "this_monitor_unselected_screen_active"    : [ LIGHT.teal.hex,      DARK.peach.hex ],     
-  # "this_monitor_unselected_screen_inactive"  : [ "4c4c4c",            DARK.rosewater.hex ],
+  # # Currently selected v
+  # "this_monitor_selected_screen_active"      : [ LATTE.mauve.hex,     FRAPPE.mauve.hex ],
+  # "this_monitor_selected_screen_inactive"    : [ "a0a0a0",            FRAPPE.rosewater.hex ],
+  # "this_monitor_unselected_screen_active"    : [ LATTE.teal.hex,      FRAPPE.peach.hex ],     
+  # "this_monitor_unselected_screen_inactive"  : [ "4c4c4c",            FRAPPE.rosewater.hex ],
 
-  # "other_monitor_selected_screen_active"     : [ LIGHT..hex,   DARK..hex ],
-  # "other_monitor_selected_screen_inactive"   : [ LIGHT..hex,   DARK..hex ],
-  # "other_monitor_unselected_screen_active"   : [ LIGHT..hex,   DARK..hex ],
-  # "other_monitor_unselected_screen_inactive" : [ LIGHT..hex,   DARK..hex ],
+  # "other_monitor_selected_screen_active"     : [ LATTE..hex,   FRAPPE..hex ],
+  # "other_monitor_selected_screen_inactive"   : [ LATTE..hex,   FRAPPE..hex ],
+  # "other_monitor_unselected_screen_active"   : [ LATTE..hex,   FRAPPE..hex ],
+  # "other_monitor_unselected_screen_inactive" : [ LATTE..hex,   FRAPPE..hex ],
 }

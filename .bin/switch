@@ -4,18 +4,18 @@ CURRENT=`cat $HOME/.colorscheme`
 
 if [[ -z $1 ]] then
   case $CURRENT in
-    "light") NEW="dark" ;;
-    "dark" ) NEW="light" ;;
-    *      ) NEW="dark" ;;
+    "latte") NEW="frappe" ;;
+    "frappe" ) NEW="latte" ;;
+    *      ) NEW="frappe" ;;
   esac
 else
-  if [[ "$1" == "dark" || "$1" == "light" ]] then
+  if [[ "$1" == "frappe" || "$1" == "latte" ]] then
     NEW=$1
   elif [[ "$1" == "same" ]] then
     NEW=$CURRENT
   else
     echo No such theme
-    echo Themes: dark, light
+    echo Themes: frappe, latte
     echo Or use \`same\` to reload/strap the current theme
     exit
   fi
@@ -64,14 +64,14 @@ pkill -SIGUSR1 qtile
 echo Themeing nvim...
 pkill -SIGUSR1 nvim
 
-echo Themeing kitty...
+echo Themeing kitty
 case "$NEW" in
-  "light")
+  "latte")
     kitten theme catppuccin-latte 
     SPICETIFY="latte"
     VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css");'
     ;;
-  "dark" )
+  "frappe" )
     kitten theme catppuccin-frappe
     SPICETIFY="frappe"
     VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-frappe-lavender.theme.css");'
