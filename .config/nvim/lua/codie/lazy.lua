@@ -53,6 +53,12 @@ local plug = {
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
   -- {'L3MON4D3/LuaSnip'},
+  {'tpope/vim-fugitive'},
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
 }
 
 require("lazy").setup(plug)
