@@ -21,7 +21,7 @@ end)
 -- here you can setup the language servers
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { "ast_grep", "lua_ls" },
+  ensure_installed = { "ast_grep", "lua_ls", "bashls" },
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
