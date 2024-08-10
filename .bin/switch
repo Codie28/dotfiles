@@ -1,9 +1,8 @@
 #!/bin/bash
 
+CURRENT=`cat $HOME/.colorscheme`
 
 if [[ -z $1 ]] then
-  CURRENT=`cat $HOME/.colorscheme`
-  echo $CURRENT
   case $CURRENT in
     "light") NEW="dark" ;;
     "dark" ) NEW="light" ;;
@@ -12,8 +11,12 @@ if [[ -z $1 ]] then
 else
   if [[ "$1" == "dark" || "$1" == "light" ]] then
     NEW=$1
+  elif [[ "$1" == "same" ]] then
+    NEW=$CURRENT
   else
     echo No such theme
+    echo Themes: dark, light
+    echo Or use \`same\` to reload/strap the current theme
     exit
   fi
 fi
@@ -21,9 +24,35 @@ fi
 echo Switching to $NEW theme 
 echo $NEW > $HOME/.colorscheme
 
-echo Refreshing polybar...
-echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
-$HOME/.config/polybar/startup.sh &
+echo \(re\)Loading bar
+
+killall -q polybar
+killall -q eww
+
+if [[ -n $2 ]] then
+  BAR=$2
+else
+  BAR="polybar"
+fi
+
+case "$BAR" in
+  "polybar")
+    echo Refreshing polybar...
+    echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
+    $HOME/.config/polybar/startup.sh &
+    ;;
+  "eww"    )
+    echo Loading eww
+    echo TODO
+    exit 0
+    ;;
+  *        )
+    echo No such bar
+    echo Bars: polybar, eww
+    exit 0
+    ;;
+esac
+
 
 sleep 1
 
@@ -33,3 +62,32 @@ nitrogen --set-auto $HOME/wps/$NEW/$WPFILE
 
 echo Refreshing qtile...
 pkill -SIGUSR1 qtile
+
+echo Themeing nvim...
+pkill -SIGUSR1 nvim
+
+echo Themeing kitty
+case "$NEW" in
+  "light")
+    kitten theme catppuccin-latte 
+    SPICETIFY="latte"
+    VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css");'
+    ;;
+  "dark" )
+    kitten theme catppuccin-frappe
+    SPICETIFY="frappe"
+    VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-frappe-lavender.theme.css");'
+    ;;
+esac
+
+pkill -SIGUSR1 kitty
+
+echo Themeing spotify
+spicetify config current_theme catppuccin
+spicetify config color_scheme $SPICETIFY
+spicetify config inject_css 1 inject_theme_js 1 replace_colors 1 overwrite_assets 1
+spicetify apply
+
+echo Themeing discord
+echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css
+
