@@ -1,12 +1,20 @@
-vim.g.moonlight_italic_comments = true
-vim.g.moonlight_italic_keywords = false
--- vim.g.moonlight_italic_functions = true
--- vim.g.moonlight_italic_variables = false
--- vim.g.moonlight_contrast = true
--- vim.g.moonlight_borders = false 
--- vim.g.moonlight_disable_background = false
+function colormycursors()
 
-vim.cmd.colorscheme('catppuccin-frappe')
+  local file = io.open(os.getenv("HOME") .."/.colorscheme", "r") -- r read mode and b binary mode
+  if not file then return nil end
+  local theme = file:read "*a" -- *a or *all reads the whole file
+  file:close()
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none"})
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none"})
+  -- Pretty cangy fix but dont fix what ain't broke
+  local themes =
+  {
+    ["dark\n"]  = "catppuccin-frappe",
+    ["light\n"] = "catppuccin-latte" ,
+  }
+
+  local vim_theme = themes[theme]
+
+  vim.cmd.colorscheme(vim_theme)
+end
+
+colormycursors()
