@@ -1,7 +1,6 @@
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  vim.g.mapleader = ' '
 
   local opts = {buffer = bufnr}
   vim.keymap.set('n',  'K',        function() vim.lsp.buf.hover() end, opts)
@@ -21,7 +20,7 @@ end)
 -- here you can setup the language servers
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { "ast_grep", "lua_ls", "bashls" },
+  ensure_installed = { "ast_grep", "lua_ls", "bashls", "clangd", "asm_lsp" },
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})

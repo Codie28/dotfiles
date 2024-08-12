@@ -4,8 +4,6 @@ local harpoon = require("harpoon")
 harpoon:setup()
 -- REQUIRED
 
-vim.g.mapleader = ' '
-
 vim.keymap.set("n", "<leader>hh", function() harpoon:list():add() end)
 vim.keymap.set("n", "<C-b>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 

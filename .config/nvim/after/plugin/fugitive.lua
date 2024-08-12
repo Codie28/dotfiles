@@ -1,5 +1,3 @@
-vim.g.mapleader = ' '
-
 vim.keymap.set('n', '<leader>gs', function ()
   vim.cmd('Gwrite')
 end)
