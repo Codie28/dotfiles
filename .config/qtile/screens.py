@@ -10,6 +10,15 @@ from style import (
 screens = [
     Screen(
         top=bar.Gap(size=40)
+    ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                # widget.WindowName(),
+                widget.GroupBox()
+            ],
+            size=24
+        )
 #       top=bar.Bar(
 #           [
 #               widget.CurrentLayout(

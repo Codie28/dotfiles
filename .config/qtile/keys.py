@@ -22,6 +22,8 @@ SSH_LNCHR = os.path.expanduser('~/.bin/myrofi') + " ssh"
 PSW_LNCHR = os.path.expanduser('~/.bin/myrofi') + " psw"
 WIN_LNCHR = os.path.expanduser('~/.bin/myrofi') + " win"
 
+POLYBAR_RELOAD = os.path.expanduser('~/.config/polybar/startup.sh')
+
 keys = [
   # Key([],         'F11',    lazy.group['pad'].dropdown_toggle('term')),
 
@@ -47,6 +49,7 @@ keys = [
     Key([MOD],      "w",      lazy.window.kill()),
     Key([MOD],      "t",      lazy.window.toggle_floating()),
     Key([MOD],      "f",      lazy.window.toggle_fullscreen()),
+    Key([MOD],      "m",      lazy.window.toggle_maximize()),
 
     Key([MOD],      "space",  lazy.spawn(APP_LNCHR)),
     Key([MOD],      "o",      lazy.spawn(SSH_LNCHR)),
@@ -71,6 +74,8 @@ keys = [
 
     # TODO: Use MOD + a/s/d to switch between monitors when you find a way to do it
     # a = 2nd (if we ever get one), s = 0th, d = 1st,
+    Key([MOD],      "s",      lazy.to_screen(0)),
+    Key([MOD],      "d",      lazy.to_screen(1)),
 ]
 
 mouse = [
@@ -81,10 +86,17 @@ mouse = [
 
 def group_keys(groups):
     key = []
+    # TODO: make sure to use xrandr to determine if we have 2 monitors
+    # might not be necessary
+
     for _, group in enumerate(groups, 1):
-        i = group.label
+        i = str(group.label)
+
         key.extend([
-            Key([MOD],      str(i), lazy.group[group.name].toscreen()),
-            Key([MOD, SFT], str(i), lazy.window.togroup(group.name))
+            Key([MOD],      i,
+                lazy.to_screen(0) if i in '12345v' else lazy.to_screen(1),
+                lazy.group[group.name].toscreen()
+                ),
+            Key([MOD, SFT], i, lazy.window.togroup(group.name))
         ])
     return key

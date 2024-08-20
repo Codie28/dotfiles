@@ -1,4 +1,0 @@
-setxkbmap -layout tr
-xmodmap ~/.xmodmap
-picom -f --vsync -o=0 &
-wal -R

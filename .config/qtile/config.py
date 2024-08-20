@@ -45,7 +45,7 @@ from keys import (
 from screens import screens
 
 
-# NOTE:  polybar uses xworkspace name???
+# NOTE: polybar uses xworkspace name???
 # label as the key ig
 groups = (
     Group('', label='1', layout='monadtall'),
@@ -60,6 +60,11 @@ groups = (
           matches=[Match(wm_class="discord")]
     ),
     Group('', label='v', layout='monadwide'),
+
+    # Second monitor
+    Group('z', label='z', layout='monadtall'),
+    Group('x', label='x', layout='monadtall'),
+    Group('c', label='c', layout='monadtall'),
 )
 
 keys.extend(

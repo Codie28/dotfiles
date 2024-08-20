@@ -5,7 +5,12 @@ killall -q polybar
 # If all your bars have ipc enabled, you can also use
 # polybar-msg cmd quit
 
-# Launch Polybar, using default config location ~/.config/polybar/config.ini
-polybar top 2>&1 | tee -a /tmp/polybar.log & disown
-
-echo "Polybar launched..."
+# if type "xrandr"; then
+#   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+#     echo "Polybar launched on $m..."
+#     MONITOR=$m polybar top 2>&1 | tee -a /tmp/polybar.log & disown
+#   done
+# else
+  echo "Polybar launched..."
+  polybar top 2>&1 | tee -a /tmp/polybar.log & disown
+# fi
