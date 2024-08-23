@@ -20,12 +20,12 @@ COLORS = {
   # "bar_border"                               : [ LATTE.lavender.hex,  FRAPPE.lavender.hex ],
 
   # "layout_text"                              : [ LATTE.maroon.hex,    FRAPPE.yellow.hex ],
-  # "clock_text"                               : [ LATTE.text.hex,      FRAPPE.text.hex ],
+    "clock_text"                               : [ LATTE.text.hex,      FRAPPE.text.hex ],
 
-  # "battery_percentage_text"                  : [ LATTE.text.hex,      FRAPPE.text.hex ],
-  # "battery_percentage_low_text"              : [ LATTE.red.hex,       FRAPPE.red.hex ],
-  # "battery_char"                             : [ LATTE.green.hex,     FRAPPE.green.hex ],
-  # "battery_char_low"                         : [ LATTE.red.hex,       FRAPPE.red.hex ],
+    "battery_percentage_text"                  : [ LATTE.text.hex,      FRAPPE.text.hex ],
+    "battery_percentage_low_text"              : [ LATTE.red.hex,       FRAPPE.red.hex ],
+    "battery_char"                             : [ LATTE.green.hex,     FRAPPE.green.hex ],
+    "battery_char_low"                         : [ LATTE.red.hex,       FRAPPE.red.hex ],
 
   # # NOTE: this is prep for qtile/qtile/issues/1243
   # # Currently selected v

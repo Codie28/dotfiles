@@ -1,31 +1,5 @@
 # hai :3
 
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, MODify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 from libqtile import bar, layout, qtile, widget
 from libqtile.config import Group, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
@@ -53,18 +27,16 @@ groups = (
           matches=[Match(wm_class="firefox")]
     ),
     Group('', label='3', layout='monadtall'),
-    Group('', label='4', layout='monadwide',
-          matches=[Match(wm_class="Spotify")]
-    ),
-    Group('󱅯', label='5', layout='monadwide',
-          matches=[Match(wm_class="discord")]
-    ),
-    Group('', label='v', layout='monadwide'),
+    Group('', label='4', layout='monadwide'),
 
     # Second monitor
     Group('z', label='z', layout='monadtall'),
-    Group('x', label='x', layout='monadtall'),
-    Group('c', label='c', layout='monadtall'),
+    Group('', label='x', layout='monadwide',
+          matches=[Match(wm_class="Spotify")]
+    ),
+    Group('󱅯', label='c', layout='monadwide',
+          matches=[Match(wm_class="discord")]
+    ),
 )
 
 keys.extend(
@@ -83,10 +55,8 @@ keys.extend(
 #   )
 
 layout_theme = {
-    "border_width": 3,
+    "border_width": 0,
     "margin": 9,
-    "border_focus":  COLORS["win_border_focus"][COLORSCHEME],
-    "border_normal": COLORS["win_border_normal"][COLORSCHEME],
 }
 
 layouts = [
@@ -130,15 +100,9 @@ follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
-auto_fullscreen = True
-auto_minimize = True
+auto_fullscreen = False
+auto_minimize = False
 focus_on_window_activation = "smart"
-reconfigure_screens = True
-
-# When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
-# xcursor theme (string or None) and size (integer) for Wayland backend
-wl_xcursor_theme = None
-wl_xcursor_size = 24
+reconfigure_screens = False
 
 wmname = "LG3D"
