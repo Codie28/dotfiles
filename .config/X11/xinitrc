@@ -3,15 +3,19 @@
 autorandr --change
 xmodmap ~/.config/X11/xmodmap
 picom -f --vsync -o=0 &
-nitrogen --restore
+nitrogen --restore &
+dunst &
+eww daemon &
+eww open vertical &
 
-# a good place to put this i think
-~/personal/deck/cdeck.py &
-
+# a good place to put these i think
 # Twas too broken
+# ~/personal/deck/cdeck.py &
 # ~/personal/handies/handwp.py &
 
-# switch same does all the heavy lifting
+# `switch same` does the heavy lifting
 ~/.bin/switch same &
+
+source ~/.config/X11/XDG_ENV
 
 exec qtile start
