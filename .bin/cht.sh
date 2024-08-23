@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-langs=`echo "c cpp lua js nodejs gleam" | tr ' ' '\n'` 
-cutils=`echo "jq awk sed sort find" | tr ' ' '\n'`
+langs="js lua"
+utils="jq awk sed sort find"
 
-selec=`printf "$langs\n$cutils" | sort -r | fzf`
-printf "Selected: $selec\n"
-read -p "Query: " query
+selec=`printf "$langs $utils" | tr ' ' '\n' | sort -r | fzf --preview "curl cht.sh/{} -s"`
 
-if echo $langs | grep -qs $selec; then
-  query=`echo $query | tr ' ' '+'`
-  tmux neww bash -c "curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
+if echo $langs | grep "$selec"; then
+  printf 'Lang query: '
+  read query
+  curl cht.sh/$selec/`echo $query | tr ' ' '+'` -s | less -r
 else
-  tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
+  curl cht.sh/$selec | less -r
 fi
