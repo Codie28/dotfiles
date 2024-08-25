@@ -2,7 +2,8 @@
 # after this `$ZDOTDIR` gets set to `$HOME/.config/zsh`
 
 # Lets hope this doesnt shoot me in the groin in couple of weeks
-export ZDOTDIR=~/.config/zsh
+# xxx: it fucking did
+export ZDOTDIR='~/.config/zsh'
 
 if [[ $(tty) == '/dev/tty1' ]] then
   $HOME/.bin/x
@@ -11,3 +12,6 @@ fi
 if [[ $(tty) == '/dev/tty2' ]] then
   Hyprland
 fi
+
+# ttys suck
+source $HOME/.config/zsh/.zshrc

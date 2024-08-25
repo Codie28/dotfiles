@@ -1,12 +1,13 @@
 #!/bin/sh
 
+source ~/.config/X11/xenv
+
 autorandr --change
 xmodmap ~/.config/X11/xmodmap
 picom -f --vsync -o=0 &
 nitrogen --restore &
 dunst &
 eww daemon &
-eww open vertical &
 
 # a good place to put these i think
 # Twas too broken
@@ -14,8 +15,7 @@ eww open vertical &
 # ~/personal/handies/handwp.py &
 
 # `switch same` does the heavy lifting
-~/.bin/switch same &
-
-source ~/.config/X11/XDG_ENV
+# bad practice with not running in bg but bad practices can kiss my ass
+~/.bin/switch same
 
 exec qtile start
