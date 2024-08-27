@@ -42,7 +42,7 @@ final_space = true
     template = '{{ .FormattedMs }}'
 
     [blocks.segments.properties]
-      threshold = 1000
+      threshold = 1
 
 [[blocks]]
   type = 'prompt'
