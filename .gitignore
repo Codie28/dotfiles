@@ -2,3 +2,4 @@
 .config/polybar/themes/current.ini
 .config/kitty/current-theme.conf
 .config/kitty/kitty.conf.bak
+.config/eww/_current.scss

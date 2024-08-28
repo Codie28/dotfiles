@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CURRENT=`cat $QTILE_THEME_HOME/.colorscheme`
+
+case $CURRENT in
+  "frappe" ) ICON="" ;;
+  "latte"  ) ICON="" ;;
+  *        ) ICON="" ;;
+esac
+
+echo $ICON

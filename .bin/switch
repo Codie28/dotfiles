@@ -1,12 +1,12 @@
 #!/bin/bash
 
-CURRENT=`cat $HOME/.colorscheme`
+CURRENT=`cat $QTILE_THEME_HOME/.colorscheme`
 
 if [[ -z $1 ]] then
   case $CURRENT in
-    "latte") NEW="frappe" ;;
-    "frappe" ) NEW="latte" ;;
-    *      ) NEW="frappe" ;;
+    "latte" ) NEW="frappe" ;;
+    "frappe") NEW="latte"  ;;
+    *       ) NEW="frappe" ;;
   esac
 else
   if [[ "$1" == "frappe" || "$1" == "latte" ]] then
@@ -22,41 +22,17 @@ else
 fi
 
 echo Switching to $NEW theme 
-echo $NEW > $HOME/.colorscheme
+echo $NEW > $QTILE_THEME_HOME/.colorscheme
 
-killall -q polybar
-killall -q eww
-
-if [[ -n $2 ]] then
-  BAR=$2
-else
-  BAR="polybar"
-fi
-
-case "$BAR" in
-  "polybar")
-    echo Refreshing polybar...
-    echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
-    $HOME/.config/polybar/startup.sh >/dev/null 2>/dev/null
-    ;;
-  "eww"    )
-    echo Loading eww
-    echo TODO
-    exit 0
-    ;;
-  *        )
-    echo No such bar
-    echo Bars: polybar, eww
-    exit 0
-    ;;
-esac
-
+echo Refreshing polybar...
+echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
+$HOME/.config/polybar/startup.sh >/dev/null 2>/dev/null
 
 sleep 1
 
-echo Setting wallpaper...
-WPFILE=`ls $HOME/wps/$NEW | sort | head -n 1`
-nitrogen --set-auto $HOME/wps/$NEW/$WPFILE >/dev/null 2>/dev/null
+# echo Setting wallpaper...
+# WPFILE=`ls $HOME/wps/$NEW | sort | head -n 1`
+# nitrogen --set-auto $HOME/wps/$NEW/$WPFILE >/dev/null 2>/dev/null
 
 echo Refreshing qtile...
 pkill -SIGUSR1 qtile
@@ -64,16 +40,15 @@ pkill -SIGUSR1 qtile
 echo Themeing nvim...
 pkill -SIGUSR1 nvim
 
-echo Themeing kitty
+echo Themeing kitty...
+# Also setting stuff for next steps. opps
 case "$NEW" in
   "latte")
     kitten theme catppuccin-latte 
-    SPICETIFY="latte"
     VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css");'
     ;;
   "frappe" )
     kitten theme catppuccin-frappe
-    SPICETIFY="frappe"
     VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-frappe-lavender.theme.css");'
     ;;
 esac
@@ -81,11 +56,18 @@ esac
 pkill -SIGUSR1 kitty
 
 echo Themeing spotify...
-spicetify config current_theme catppuccin >/dev/null
-spicetify config color_scheme $SPICETIFY >/dev/null
-spicetify config inject_css 1 inject_theme_js 1 replace_colors 1 overwrite_assets 1 >/dev/null
-spicetify apply >/dev/null
+spicetify config current_theme catppuccin -q
+spicetify config color_scheme $NEW -q
+spicetify config inject_css 1 inject_theme_js 1 replace_colors 1 overwrite_assets 1 -q
+spicetify apply -q
 
 echo Themeing discord...
 echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css 
 
+echo Themeing eww...
+echo "@import '$HOME/.themes/catppuccin/scss/$NEW';" > $HOME/.config/eww/_current.scss
+
+$HOME/.bin/myeww same
+
+# echo Thememing streamdeck
+# pkill -SIGUSR1 cdeck 

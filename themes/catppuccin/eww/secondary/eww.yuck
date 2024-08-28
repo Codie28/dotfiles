@@ -1,0 +1,33 @@
+(defwindow bonsai 
+           :geometry (geometry :x "10" :y "675" :width "256" :height "395")
+           :class "window"
+           logs)
+
+(defwindow calender
+           :geometry (geometry :x "10" :y "10" :width "256" :height "256")
+           :class "window"
+           "calender")
+
+(defwindow multibox
+           :geometry (geometry :x "10" :y "276" :width "123" :height "389")
+           :class "window"
+           "multibox")
+
+(defwindow split1
+           :geometry (geometry :x "143" :y "409" :width "123" :height "123")
+           :class "window"
+           "split1")
+
+(defwindow split2
+           :geometry (geometry :x "143" :y "276" :width "123" :height "123")
+           :class "window"
+           "split2")
+
+(defpoll bonsai 
+         :interval "10s"
+         :initial "bonsai tree..."
+         :run-while true
+  `$HOME/.config/eww/scripts/bonsai`)
+
+(deflisten logs
+  `tail -n 2 -F $HOME/.local/share/qtile/qtile.log `)
