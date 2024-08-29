@@ -13,6 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plug = {
+  -- maybe a way to add theme spesific plugins?
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
