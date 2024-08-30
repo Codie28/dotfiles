@@ -1,8 +1,8 @@
 function colormycursors()
 
-  local file = io.open(os.getenv("QTILE_THEME_HOME") .."/.colorscheme", "r") -- r read mode and b binary mode
+  local file = io.open(os.getenv("QTILE_THEME_HOME") .."/catscheme", "r")
   if not file then return nil end
-  local theme = file:read "*a" -- *a or *all reads the whole file
+  local theme = file:read "*a"
   file:close()
 
   -- Pretty cangy fix but dont fix what ain't broke
