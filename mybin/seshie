@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Wasted 1 hour for it to be useless
+# echo "$(zellij ls | awk '{print $1}' | sed 's/\[32;1//g' | sed 's/\[m//g' | sort -r | fzf)"
+
+PROJ_FOLDERS=`echo ~/projects ~/personal ~/work ~/playground`
+EXTR_FOLDERS=`echo ~/ ~/dots ~/etcs ~/git`
+
+if [[ -n $1 ]] then
+  selected=$1
+else
+  selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sed 's/\/home\/codie\///g' | sort -r | fzf --tmux top,70%,45% --preview "ls -A $HOME/{}"`
+fi
+
+path="$HOME/$selected"
+
+if [[ -z $selected ]] then
+  exit 0
+fi
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected -c $path
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected 2> /dev/null; then
+    tmux new-session -ds $selected -c $path
+fi
+
+tmux switch-client -t $selected

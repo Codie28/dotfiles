@@ -1,0 +1,140 @@
+#!/bin/bash
+
+THEMES_DIR=$HOME/dots/themes
+CONFIG=".config"
+
+sw_strap() {
+  mkdir $QTILE_THEME_HOME
+  echo "catppuccin" >> $QTILE_THEME_HOME/theme
+  echo "default theme files are generated. please relaunch switch"
+}
+
+sw_clean() {
+  echo cleaning theme $1...
+  for i in $(ls $THEMES_DIR/$1); do
+    # this is scary
+    rm -r $HOME/$CONFIG/$i
+  done
+}
+
+sw_apply() {
+  echo appling theme $1...
+  # gosh stow
+  stow -d $THEMES_DIR -t $HOME/$CONFIG --no-folding $1 --dotfiles
+}
+
+sw_switch() {
+  if ls $THEMES_DIR | grep $1 > /dev/null; then 
+    echo "switching to theme $1"
+    PREV=`cat $QTILE_THEME_HOME/theme`
+    echo prev is $PREV
+    sw_clean $PREV 
+    sw_clean common
+
+    if [[ "$1" != "common" ]]; then
+      sw_apply common
+    fi
+
+    sw_apply $1
+    echo $1 > $QTILE_THEME_HOME/theme
+  else
+    echo "no such theme exists"
+  fi
+}
+
+sw_list() {
+  ls $THEMES_DIR | sort -r 
+}
+
+if [[ -d $QTILE_THEME_HOME ]]; then
+  false
+else
+  sw_strap
+  echo "optionaly you can run \`switch strap\` to regenerate theme files"
+  exit
+fi
+
+sw_catppuccin_theme() {
+	CURRENT=`cat $QTILE_THEME_HOME/catscheme`
+
+	if [[ -z $1 ]] then
+	  case $CURRENT in
+	    "latte" ) NEW="frappe" ;;
+	    "frappe") NEW="latte"  ;;
+	    *       ) NEW="frappe" ;;
+	  esac
+	else
+	  if [[ "$1" == "frappe" || "$1" == "latte" ]] then
+	    NEW=$1
+	  elif [[ "$1" == "same" ]] then
+	    NEW=$CURRENT
+	  else
+	    echo No such theme
+	    echo Themes: frappe, latte
+	    echo Or use \`same\` to reload/strap the current theme
+	    exit
+	  fi
+	fi
+
+	echo Switching to $NEW theme 
+	echo $NEW > $QTILE_THEME_HOME/catscheme
+
+	echo Refreshing polybar...
+	echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
+	$HOME/.config/polybar/launch.sh 
+	sleep 1
+
+	# echo Setting wallpaper...
+	# WPFILE=`ls $HOME/wps/$NEW | sort | head -n 1`
+	# nitrogen --set-auto $HOME/wps/$NEW/$WPFILE >/dev/null 2>/dev/null
+
+	echo Refreshing qtile...
+	pkill -SIGUSR1 qtile
+
+	echo Themeing nvim...
+	pkill -SIGUSR1 nvim
+
+	echo Themeing kitty...
+	# Also setting stuff for next steps. opps
+	case "$NEW" in
+	  "latte")
+	    kitten theme catppuccin-latte 
+	    VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css");'
+	    ;;
+	  "frappe" )
+	    kitten theme catppuccin-frappe
+	    VENCORD='@import url("https://catppuccin.github.io/discord/dist/catppuccin-frappe-lavender.theme.css");'
+	    ;;
+	esac
+
+	pkill -SIGUSR1 kitty
+
+	echo Themeing spotify...
+	spicetify config current_theme catppuccin -q
+	spicetify config color_scheme $NEW -q
+	spicetify config inject_css 1 inject_theme_js 1 replace_colors 1 overwrite_assets 1 -q
+	spicetify apply -q
+
+	echo Themeing discord...
+	echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css 
+
+	echo Themeing eww...
+	echo "@import '$HOME/.themes/catppuccin/scss/$NEW';" > $HOME/.config/eww/_current.scss
+
+	$HOME/.bin/myeww same
+
+	# echo Thememing streamdeck
+	# pkill -SIGUSR1 cdeck 
+}
+
+case "$1" in
+  "strap") sw_strap;;
+  "list" ) sw_list;;
+  "clean") 
+    PREV=`cat $QTILE_THEME_HOME/theme`
+    sw_clean common
+    sw_clean $PREV
+    ;;
+  "cat") sw_catppuccin_theme $2 ;;
+  *      ) sw_switch $1;;
+esac
