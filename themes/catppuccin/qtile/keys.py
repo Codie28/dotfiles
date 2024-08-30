@@ -15,12 +15,12 @@ WPMGR      = "nitrogen"
 SOUNDMGR   = "alsamixer"
 MUSICPLYR  = "spotify-launcher"
 
-THEMESWCHR = os.path.expanduser('~/.bin/switch')
+THEMESWCHR = os.path.expanduser('~/mybin/switch cat')
 
-APP_LNCHR = os.path.expanduser('~/.bin/myrofi') + " app"
-SSH_LNCHR = os.path.expanduser('~/.bin/myrofi') + " ssh"
-PSW_LNCHR = os.path.expanduser('~/.bin/myrofi') + " psw"
-WIN_LNCHR = os.path.expanduser('~/.bin/myrofi') + " win"
+APP_LNCHR = os.path.expanduser('.config/rofi/launch.sh') + " app"
+SSH_LNCHR = os.path.expanduser('.config/rofi/launch.sh') + " ssh"
+PSW_LNCHR = os.path.expanduser('.config/rofi/launch.sh') + " psw"
+WIN_LNCHR = os.path.expanduser('.config/rofi/launch.sh') + " win"
 
 POLYBAR_RELOAD = os.path.expanduser('~/.config/polybar/startup.sh')
 

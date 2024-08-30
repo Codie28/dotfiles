@@ -14,8 +14,8 @@ eww daemon &
 # ~/personal/deck/cdeck.py &
 # ~/personal/handies/handwp.py &
 
-# `switch same` does the heavy lifting
+# `switch cat` does the heavy lifting
 # bad practice with not running in bg but bad practices can kiss my ass
-~/.bin/switch same
+~/mybin/switch cat same
 
 exec qtile start

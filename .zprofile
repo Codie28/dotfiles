@@ -6,7 +6,7 @@
 export ZDOTDIR='~/.config/zsh'
 
 if [[ $(tty) == '/dev/tty1' ]] then
-  $HOME/.bin/x
+  $HOME/mybin/x
 fi
 
 if [[ $(tty) == '/dev/tty2' ]] then
