@@ -6,6 +6,8 @@ CONFIG=".config"
 sw_strap() {
   mkdir $QTILE_THEME_HOME
   echo "catppuccin" >> $QTILE_THEME_HOME/theme
+  echo "dashboard" >> $QTILE_THEME_HOME/ewwmode
+  echo "latte" >> $QTILE_THEME_HOME/colorscheme
   echo "default theme files are generated. please relaunch switch"
 }
 
@@ -119,9 +121,9 @@ sw_catppuccin_theme() {
 	echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css 
 
 	echo Themeing eww...
-	echo "@import '$HOME/.themes/catppuccin/scss/$NEW';" > $HOME/.config/eww/_current.scss
+	echo "@import '$HOME/.config/.theme/scss/$NEW';" > $HOME/.config/eww/_current.scss
 
-	$HOME/.bin/myeww same
+  /home/codie/.config/eww/launch.sh same
 
 	# echo Thememing streamdeck
 	# pkill -SIGUSR1 cdeck 

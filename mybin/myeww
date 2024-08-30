@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# just a easier way to access eww options
+$HOME/.config/eww/launch.sh $1

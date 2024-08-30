@@ -3,7 +3,7 @@
 SECONDARY="$HOME/.config/eww/secondary"
 DASHBOARD="$HOME/.config/eww/dashboard"
 
-CURRENT=`cat $QTILE_THEME_HOME/.ewwmode`
+CURRENT=`cat $QTILE_THEME_HOME/ewwmode`
 SCREEN=1
 
 case "$1" in
@@ -23,7 +23,7 @@ case "$1" in
 esac
 
 echo m is $m
-echo $m > $QTILE_THEME_HOME/.ewwmode
+echo $m > $QTILE_THEME_HOME/ewwmode
 
 case "$m" in
   'secondary')

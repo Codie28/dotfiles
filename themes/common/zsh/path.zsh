@@ -6,7 +6,7 @@ add_to_path() {
   fi
 }
 
-add_to_path left  $HOME/.bin
+add_to_path left  $HOME/mybin
 add_to_path right $HOME/.spicetify
 
 # vim: set filetype=bash
