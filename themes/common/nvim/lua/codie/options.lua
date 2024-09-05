@@ -23,6 +23,12 @@ vim.opt.scrolloff = 6
 
 vim.opt.colorcolumn = "80"
 
+-- folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldcolumn = "1"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+
+
 -- VIM-TMUX NAV
 vim.g.tmux_navigator_no_mappings = 1
-
