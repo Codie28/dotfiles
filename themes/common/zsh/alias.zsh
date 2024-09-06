@@ -1,6 +1,17 @@
-alias v='nvim'
-alias t="tmux -f ~/.config/tmux/tmux.conf"
-alias s="seshie"
+alias v=nvim
+alias s=seshie
+alias t=smart_tmux
+alias w=weechat
+
+alias xmm='xmodmap ~/.config/X11/xmodmap'
+
+smart_tmux() {
+  if [[ -n $(pgrep tmux) ]]; then
+    tmux a
+  else
+    tmux -f ~/.config/tmux/tmux.conf
+  fi
+}
 
 alias ls="ls --color=auto"
 alias ll="ls -lA"

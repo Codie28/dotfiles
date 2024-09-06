@@ -23,3 +23,10 @@ fi
 source $HOME/.config/zsh/alias.zsh
 source $HOME/.config/zsh/path.zsh
 source $HOME/.config/zsh/completion.zsh
+
+
+if [[ ! -z $NVIM ]]; then
+  source $HOME/.config/zsh/nvim.zsh
+elif [[ ! -z $TMUX ]]; then
+  source $HOME/.config/zsh/tmux.zsh
+fi
