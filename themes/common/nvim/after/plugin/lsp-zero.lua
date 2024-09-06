@@ -1,5 +1,6 @@
 local lsp_zero = require('lsp-zero')
 
+-- TODO: add desc to these keymaps
 lsp_zero.on_attach(function(client, bufnr)
 
   local opts = {buffer = bufnr}

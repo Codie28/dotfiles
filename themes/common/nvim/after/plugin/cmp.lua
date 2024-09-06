@@ -4,6 +4,7 @@ cmp.setup({
   sources = {
     {name = 'nvim_lsp'},
   },
+  -- TODO: add desc to keymaps
   mapping = {
     ['<C-s>'] = cmp.mapping.confirm({select = true}),
     ['<C-e>'] = cmp.mapping.abort(),
