@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT=`cat $QTILE_THEME_HOME/.colorscheme`
+CURRENT=`cat $QTILE_THEME_HOME/catscheme`
 
 case $CURRENT in
   "frappe" ) ICON="" ;;
