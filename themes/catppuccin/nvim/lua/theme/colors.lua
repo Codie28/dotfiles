@@ -16,5 +16,3 @@ function colormycursors()
 
   vim.cmd.colorscheme(vim_theme)
 end
-
-colormycursors()

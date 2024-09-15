@@ -6,5 +6,3 @@ require("codie.remaps")
 require("codie.options")
 require("codie.signals")
 require("codie.statusline")
-
-require("theme.colors")
