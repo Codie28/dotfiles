@@ -31,6 +31,9 @@ elif [[ "$status" == "Charging" ]]; then
   #   '9') icon='󰂅';;
   # esac
   icon='󰂄'
+elif [[ "$status" == "Not charging" ]]; then
+  icon="󱈑"
+
 else
   icon='󰂑'
 fi
