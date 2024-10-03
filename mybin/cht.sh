@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-langs="js lua"
+langs="js lua python"
 utils="jq awk sed sort find"
 
 selec=`printf "$langs $utils" | tr ' ' '\n' | sort -r | fzf --preview "curl cht.sh/{} -s"`

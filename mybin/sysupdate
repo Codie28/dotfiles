@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+echo Are you sure you wana do this
+echo \(no takesies backsies\)
+echo type \'NYA\' confirm
+printf " > "
+read query
+
+echo $query
+
+if (( "$query" != "NYA" )); then
+  echo canceled!
+  exit
+fi
+
+# this is so yay doesnt ask it again?
+sudo echo
+
+sudo pacman -Syyu --noconfirm
+yes | LANG=C yay  --answerdiff None --answerclean None --mflags "--noconfirm" -Syyu
+
+shutdown

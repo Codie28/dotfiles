@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+PROJ_TYPE=`echo personal work projects playground`
+type=`printf "$PROJ_TYPE" | tr ' ' '\n' | sort -r | fzf --tmux top,70%,10 --preview "ls -A $HOME/{}"`
+
+if [[ -z "$type" ]]; then
+  exit 0
+fi
+
+name=`printf "Enter project name: ($type)" | fzf --tmux top,70%,10 --print-query | tr ' ' '-'`
+
+path="$HOME/$type/$name"
+
+echo $path
+mkdir $path
+git -C $path init
+echo "you'll never fill this do you" > $path/README.md
+
+cnb proj $name
+

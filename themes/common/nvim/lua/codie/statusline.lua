@@ -1,10 +1,10 @@
--- winbar and statuscolumn
--- vim.opt.winbar='#%n%=%m %F %Y'
-vim.opt.statuscolumn='%C%s%l '
+vim.opt.laststatus=3
+vim.opt.statusline='%!v:lua.statusline()'
 
+vim.opt.statuscolumn='%C%s%l'
 
--- following blogpost `https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html`
-statusline = {}
+-- following is based on blogpost `https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html`
+winbar = {}
 
 local modes = {
   ["n"]  = "NORMAL",
@@ -43,12 +43,16 @@ local function mode()
 end
 
 local function file()
-  local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.:h")
+  local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.")
   if fpath == "" or fpath == "." then
       return " "
   end
 
-  return string.format(" %%<%s/", fpath)
+  return string.format(" %%<%s", fpath)
+end
+
+local function dirty()
+  return "%m"
 end
 
 local function lsp()
@@ -90,34 +94,60 @@ local function filetype()
 end
 
 local function lineinfo()
-  return " %P %l:%c "
+  return " %P %l:%c   "
 end
 
-statusline.active = function()
+winbar.active = function()
   return table.concat {
-    mode(),
+    "%#StatusLine#",
+    dirty(),
     file(),
     lsp(),
-    "%#StatusLine# %#WinSeparator#│%#Normal#%=%#WinSeparator#│%#StatusLine#",
-    lineinfo(),
+    "%#StatusLine# %{get(b:,'gitsigns_status','')}",
+    " %#WinSeparator#│%#Normal#%=%#WinSeparator#│%#StatusLine#",
     filetype()
   }
 end
 
-function statusline.inactive()
-  return " %F %#WinSeparator#│%#Normal# "
-end
-
--- TODO: make undotree nvimtree have diff statusline
-function statusline.short()
-  return "   NvimTree"
+-- xxx: fix nvimtree things
+function winbar.inactive()
+  return "%#StatusLineNC#%m %t %#WinSeparator#│%#Normal# %=%#WinSeparator#│%#StatusLine# :3"
 end
 
 vim.api.nvim_exec([[
   augroup Statusline
   au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline.active()
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline.inactive()
-  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.statusline.short()
+  au BufEnter * if winheight(0) > 1 | setl winbar=%!v:lua.winbar.active() | endif
+  au BufLeave * if winheight(0) > 1 | setl winbar=%!v:lua.winbar.inactive() | endif
   augroup END
 ]], false)
+
+function statusline()
+  return table.concat {
+    "%#StatusLine#",
+    mode(),
+    file(),
+    "%{get(b:,'gitsigns_status','')}",
+    lineinfo(),
+  }
+end
+
+-- TBH native one is good enough
+-- vim.opt.tabline='%!v:lua.tabline()'
+-- function tabline()
+--   local tablist = ""
+--   for tab=1, vim.fn.tabpagenr('#'),1 do
+--     local hl
+--     if tab == vim.fn.tabpagenr() then
+--       hl = "%#TabLineSel#"
+--     else
+--       hl = "%#TabLine#"
+--     end
+--     local tabWinNum  = vim.fn.tabpagewinnr(tab)
+--     local tabBufId   = vim.fn.tabpagebuflist(tab)[tabWinNum]
+--     local tabWinPath = vim.api.nvim_buf_get_name(tabBufId)
+--     local tabWinFile = vim.fn.fnamemodify(tabWinPath, ":t")
+--     tablist = tablist .. hl .. " " .. tabBufId .. " " .. tabWinFile
+--   end
+--   return tablist
+-- end

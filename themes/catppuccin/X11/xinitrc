@@ -11,7 +11,7 @@ eww daemon &
 
 # a good place to put these i think
 # Twas too broken
-# ~/personal/deck/cdeck.py &
+~/personal/deck/cdeck.py & disown
 # ~/personal/handies/handwp.py &
 
 # `switch cat` does the heavy lifting

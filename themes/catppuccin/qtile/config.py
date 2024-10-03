@@ -52,14 +52,15 @@ groups = (
           layout='monadtall',
           screen_affinity=1,
           matches=[
-              Match(wm_class="Spotify")
+              Match(wm_class="Spotify"),
+              Match(wm_class="nuclear")
           ],
     ),
     Group('󱅯', label='c',
           layout='monadtall',
           screen_affinity=1,
           matches=[
-              Match(wm_class="discord")
+              Match(wm_class="vesktop")
           ],
     ),
 )

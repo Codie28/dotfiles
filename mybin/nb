@@ -1,9 +1,0 @@
-#!/bin/env bash
-
-NOTEBOOK="$HOME/notebook"
-
-name=`ls $NOTEBOOK | fzf --tmux top,75%,40% --preview "cat $NOTEBOOK/{}" --print-query`
-name=`echo $name | tr ' ' '-'`
-
-touch "$NOTEBOOK/$name"
-tmux neww "cd $NOTEBOOK && $EDITOR $NOTEBOOK/$name"

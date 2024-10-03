@@ -15,6 +15,9 @@ WPMGR      = "nitrogen"
 SOUNDMGR   = "alsamixer"
 MUSICPLYR  = "spotify-launcher"
 
+NOTEAPP    = os.path.expanduser('~/mybin/cnb rofi')
+NOTEDIR    = f'{TERM} -e {EDITOR} {os.path.expanduser('~/2ndbrain/')}'
+
 THEMESWCHR = os.path.expanduser('~/mybin/switch cat')
 
 APP_LNCHR = os.path.expanduser('.config/rofi/launch.sh') + " app"
@@ -25,8 +28,6 @@ WIN_LNCHR = os.path.expanduser('.config/rofi/launch.sh') + " win"
 POLYBAR_RELOAD = os.path.expanduser('~/.config/polybar/startup.sh')
 
 keys = [
-  # Key([],         'F11',    lazy.group['pad'].dropdown_toggle('term')),
-
     Key([MOD],      "h",      lazy.layout.left()),
     Key([MOD],      "j",      lazy.layout.down()),
     Key([MOD],      "k",      lazy.layout.up()),
@@ -52,10 +53,11 @@ keys = [
     Key([MOD],      "m",      lazy.window.toggle_maximize()),
 
     Key([MOD],      "space",  lazy.spawn(APP_LNCHR)),
-    Key([MOD],      "o",      lazy.spawn(SSH_LNCHR)),
-    Key([MOD],      "p",      lazy.spawn(PSW_LNCHR)),
+  # Key([MOD],      "o",      lazy.spawn(SSH_LNCHR)),
+  # Key([MOD],      "p",      lazy.spawn(PSW_LNCHR)),
     Key([MOD],      "r",      lazy.spawn(WIN_LNCHR)),
   # Key([MOD],      "r",      lazy.spawncmd()),
+    Key([MOD],      "q",      lazy.spawn(NOTEAPP)),
 
     Key([MOD],      "Return", lazy.spawn(TERM)),
 
@@ -64,6 +66,7 @@ keys = [
     Key([MOD, ALT], "w",      lazy.spawn(WPMGR)),
     Key([MOD, ALT], "m",      lazy.spawn(MUSICPLYR)),
   # Key([MOD, ALT], "s",      lazy.spawn(f"{TERM} -e {SOUNDMGR}")),
+    Key([MOD, ALT], "n",      lazy.spawn(NOTEDIR)),
 
     Key([MOD, CTRL], "r",     lazy.reload_config()),
     Key([MOD, CTRL], "q",     lazy.shutdown()),
@@ -71,6 +74,14 @@ keys = [
     # These two basicly reload the entire system
     Key([MOD, CTRL], "t",     lazy.spawn(THEMESWCHR)),
     Key([MOD, CTRL], "g",     lazy.spawn(THEMESWCHR + " same")),
+
+    # function keys
+    Key([],          "F2",    lazy.spawn(THEMESWCHR)),
+
+    Key([],          "F5",    lazy.spawn("playerctl previous")),
+    Key([],          "F6",    lazy.spawn("playerctl play-pause")),
+    Key([],          "F7",    lazy.spawn("playerctl stop")),
+    Key([],          "F8",    lazy.spawn("playerctl next")),
 ]
 
 mouse = [
@@ -89,7 +100,7 @@ def group_keys(groups):
 
         key.extend([
             Key([MOD],      i,
-                lazy.to_screen(0) if i in '12345v' else lazy.to_screen(1),
+                lazy.to_screen(0) if i in '1234' else lazy.to_screen(1),
                 lazy.group[group.name].toscreen()
                 ),
             Key([MOD, SFT], i, lazy.window.togroup(group.name))

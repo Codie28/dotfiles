@@ -25,6 +25,12 @@ sw_apply() {
   stow -d $THEMES_DIR -t $HOME/$CONFIG --no-folding $1 --dotfiles
 }
 
+sw_wallpaper() {
+  for i in $(seq 0 1); do
+    nitrogen --set-auto $HOME/$CONFIG/wp/mon$i --head=$i --save
+  done
+}
+
 sw_switch() {
   if ls $THEMES_DIR | grep $1 > /dev/null; then 
     echo "switching to theme $1"
@@ -39,6 +45,12 @@ sw_switch() {
 
     sw_apply $1
     echo $1 > $QTILE_THEME_HOME/theme
+
+    echo Refreshing qtile...
+    pkill -SIGUSR1 qtile
+    echo Refreshing nvim colorscheme...
+    pkill -SIGUSR1 nvim 
+    sw_wallpaper
   else
     echo "no such theme exists"
   fi
@@ -46,6 +58,26 @@ sw_switch() {
 
 sw_list() {
   ls $THEMES_DIR | sort -r 
+}
+
+sw_reload() {
+  case "$1" in
+    "polybar" ) $HOME/$CONFIG/polybar/launch.sh ;;
+    "eww"     ) $HOME/$CONFIG/eww/launch.sh same ;;
+    "rofi"    ) $HOME/$CONFIG/rofi/launch.sh ;;
+    "qtile"   ) pkill -SIGUSR1 qtile ;;
+    "nvim"    ) pkill -SIGUSR1 nvim ;;
+    "kitty"   ) pkill -SIGUSR1 kitty ;;
+
+    "cdeck"   ) pkill -SIGUSR1 cdeck ;;
+    "cdeck-f" ) 
+      pkill -SIGUSR2 cdeck
+      ~/personal/deck/cdeck.py & disown
+      # disabled key callback "when parrent (got) killed" for some reason
+      ;;
+    *         ) echo unknown app! ;;
+  esac
+
 }
 
 if [[ -d $QTILE_THEME_HOME ]]; then
@@ -83,7 +115,7 @@ sw_catppuccin_theme() {
 
 	echo Refreshing polybar...
 	echo -en "[colors]\ninclude-file = $HOME/.config/polybar/themes/$NEW.ini" > $HOME/.config/polybar/themes/current.ini
-	$HOME/.config/polybar/launch.sh 
+  sw_reload polybar
 	sleep 1
 
 	# echo Setting wallpaper...
@@ -91,10 +123,10 @@ sw_catppuccin_theme() {
 	# nitrogen --set-auto $HOME/wps/$NEW/$WPFILE >/dev/null 2>/dev/null
 
 	echo Refreshing qtile...
-	pkill -SIGUSR1 qtile
+  sw_reload qtile
 
 	echo Themeing nvim...
-	pkill -SIGUSR1 nvim
+  sw_reload nvim
 
 	echo Themeing kitty...
 	# Also setting stuff for next steps. opps
@@ -109,7 +141,7 @@ sw_catppuccin_theme() {
 	    ;;
 	esac
 
-	pkill -SIGUSR1 kitty
+  sw_reload kitty
 
 	echo Themeing spotify...
 	spicetify config current_theme catppuccin -q
@@ -118,25 +150,28 @@ sw_catppuccin_theme() {
 	spicetify apply -q
 
 	echo Themeing discord...
-	echo $VENCORD > $HOME/.config/Vencord/themes/catppuccin-dynamic.css 
+	echo $VENCORD > $HOME/.config/vesktop/themes/catppuccin-dynamic.css
 
 	echo Themeing eww...
 	echo "@import '$HOME/.config/.theme/scss/$NEW';" > $HOME/.config/eww/_current.scss
 
-  /home/codie/.config/eww/launch.sh same
+  sw_reload eww
 
 	# echo Thememing streamdeck
 	# pkill -SIGUSR1 cdeck 
 }
 
 case "$1" in
-  "strap") sw_strap;;
-  "list" ) sw_list;;
-  "clean") 
+  "strap"   ) sw_strap;;
+  "list"    ) sw_list;;
+  "wp"      ) sw_wallpaper;;
+  "current" ) cat $QTILE_THEME_HOME/theme;;
+  "clean"   ) 
     PREV=`cat $QTILE_THEME_HOME/theme`
     sw_clean common
     sw_clean $PREV
     ;;
-  "cat") sw_catppuccin_theme $2 ;;
-  *      ) sw_switch $1;;
+  "cat"     ) sw_catppuccin_theme $2 ;;
+  "reload"  ) sw_reload $2 ;;
+  *         ) sw_switch $1;;
 esac

@@ -37,6 +37,7 @@ local plug = {
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
+  {"lewis6991/gitsigns.nvim"},
 }
 
 require('lazy').setup(plug)

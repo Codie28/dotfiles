@@ -5,17 +5,22 @@
 
 PROJ_FOLDERS=`echo ~/projects ~/personal ~/work ~/playground`
 EXTR_FOLDERS=`echo ~/ ~/dots ~/etcs ~/git`
+SPEC_FOLDERS=`echo notebook weechat`
 
 if [[ -n $1 ]] then
   selected=$1
 else
-  selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS) | sed 's/ /\n/g' | sed 's/\/home\/codie\///g' | sort -r | fzf --tmux top,70%,45% --preview "ls -A $HOME/{}"`
+  selected=`find $PROJ_FOLDERS -maxdepth 1 -mindepth 1 -type d | cat - <(echo $EXTR_FOLDERS $SPEC_FOLDERS) | sed 's/ /\n/g' | sed 's/\/home\/codie\///g' | sort -r | fzf --tmux top,70%,45% --preview "ls -A $HOME/{}"`
 fi
-
-path="$HOME/$selected"
 
 if [[ -z $selected ]] then
   exit 0
+fi
+
+if echo $SPEC_FOLDERS | grep "$selected" > /dev/null; then
+  path="$HOME"
+else
+  path="$HOME/$selected"
 fi
 
 tmux_running=$(pgrep tmux)

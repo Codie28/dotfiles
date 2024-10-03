@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+case "$1" in
+  "rofi")
+    pid=`xdotool getactivewindow`
+    wcname=`xdotool getwindowclassname $pid`
+    wname=`xdotool getwindowname $pid`
+
+    name=`echo "$wcname-$(date +"%a-%m-%d-%y-%H:%M:%S")"`
+    note=`rofi -dmenu`
+    date=`date +"%H:%M:%S %m/%d/%y %a"`
+
+    day=`echo 10`
+    dest=`echo camp`
+
+    title=`ollama run llama3.1 "provide a singular 2-3 word title and nothing else for this note: \"$note\""`
+    title=`echo $title | tr '[:lower:]' '[:upper:]'`
+
+    printf "%-65s created by ai\n" "$title" >> $HOME/2ndbrain/Inbox/$1/$name
+    echo >> $HOME/2ndbrain/Inbox/$1/$name
+
+    printf "%-20s %58s\n" "---" "---" >> $HOME/2ndbrain/Inbox/$1/$name
+
+    printf "%-30s %48s\n" "Time: $date" "$day days left to $dest" >> $HOME/2ndbrain/Inbox/$1/$name
+    printf "%-20s %58s\n" "App: $wcname" "$wname" >> $HOME/2ndbrain/Inbox/$1/$name
+
+    printf "%-20s %58s\n" "---" "---" >> $HOME/2ndbrain/Inbox/$1/$name
+
+
+    echo >> $HOME/2ndbrain/Inbox/$1/$name
+    echo $note  >> $HOME/2ndbrain/Inbox/$1/$name
+    ;;
+  "proj")
+    name=`echo "$2-$(date +"%a-%m-%d-%y-%H:%M:%S")"`
+    date=`date`
+    echo "Created project at $date" > $HOME/2ndbrain/Inbox/$1/$name
+    ;;
+  *)
+    ;;
+esac
