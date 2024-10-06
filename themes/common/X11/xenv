@@ -1,8 +1,6 @@
-# Lets hope this doesnt shoot me in the groin in couple of weeks
-export ZDOTDIR=~/.config/zsh
-
 # QTILE THEME CONFIG
 export QTILE_THEME_HOME=~/.qtheme
 
-# TODO: find a way to add `XDG_` env vars here without breaking everything
+# export Q_TERM=`kitty`
 
+# TODO: find a way to add `XDG_` env vars here without breaking everything

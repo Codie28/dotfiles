@@ -3,7 +3,7 @@
 
 # Lets hope this doesnt shoot me in the groin in couple of weeks
 # xxx: it fucking did
-export ZDOTDIR='~/.config/zsh'
+export ZDOTDIR=$HOME/.config/zsh
 
 if [[ $(tty) == '/dev/tty1' ]] then
   $HOME/mybin/x

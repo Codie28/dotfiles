@@ -5,7 +5,7 @@ from libqtile.log_utils import logger
 FONT = "MesloLGS Nerd Font Mono"
 # 0: LATTE
 # 1: FRAPPE
-with open(os.path.expanduser(os.environ['QTILE_THEME_HOME'] + '/.colorscheme')) as f:
+with open(os.path.expanduser(os.environ['QTILE_THEME_HOME'] + '/catscheme')) as f:
     file = f.read().split('\n')
     # TODO: make it work with more then two themes
     COLORSCHEME = 1 if file[0] == 'frappe' else 0
