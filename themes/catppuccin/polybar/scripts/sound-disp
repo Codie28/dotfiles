@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# 󰕾  󰂰 󱡬
+
+# TODO: find a way to detect headphone jack "󱡬"
+status(){
+  current_sin=`pacmd list-sinks | awk '/\*/ {getline; print $2}' | tr '\<' 'a'`
+  case "$current_sin" in
+    abluez_sink*) icon='󰂰';;
+    *) icon='󰕾';;
+  esac
+
+  text=`pamixer --get-volume-human`
+  echo $icon $text
+}
+
+case "$1" in
+  "mute")
+    pamixer -t;;
+  *) status;;
+esac

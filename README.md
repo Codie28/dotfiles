@@ -14,3 +14,10 @@ Quirks and Stuff
 
 Installing
 ----------
+use the present install.sh script
+
+```shell
+$ chmod +x ./install.sh
+
+$ ./install.sh
+```

@@ -7,7 +7,7 @@ sw_strap() {
   mkdir $QTILE_THEME_HOME
   echo "catppuccin" >> $QTILE_THEME_HOME/theme
   echo "dashboard" >> $QTILE_THEME_HOME/ewwmode
-  echo "latte" >> $QTILE_THEME_HOME/colorscheme
+  echo "latte" >> $QTILE_THEME_HOME/catscheme
   echo "default theme files are generated. please relaunch switch"
 }
 
@@ -72,7 +72,7 @@ sw_reload() {
     "cdeck"   ) pkill -SIGUSR1 cdeck ;;
     "cdeck-f" ) 
       pkill -SIGUSR2 cdeck
-      ~/personal/deck/cdeck.py & disown
+      ~/personal/deck/launch.sh & disown
       # disabled key callback "when parrent (got) killed" for some reason
       ;;
     *         ) echo unknown app! ;;

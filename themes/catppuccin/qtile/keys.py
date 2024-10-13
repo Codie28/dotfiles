@@ -76,12 +76,12 @@ keys = [
     Key([MOD, CTRL], "g",     lazy.spawn(THEMESWCHR + " same")),
 
     # function keys
-    Key([],          "F2",    lazy.spawn(THEMESWCHR)),
-
-    Key([],          "F5",    lazy.spawn("playerctl previous")),
-    Key([],          "F6",    lazy.spawn("playerctl play-pause")),
-    Key([],          "F7",    lazy.spawn("playerctl stop")),
-    Key([],          "F8",    lazy.spawn("playerctl next")),
+    # Key([],          "F2",    lazy.spawn(THEMESWCHR)),
+    #
+    # Key([],          "F5",    lazy.spawn("playerctl previous")),
+    # Key([],          "F6",    lazy.spawn("playerctl play-pause")),
+    # Key([],          "F7",    lazy.spawn("playerctl stop")),
+    # Key([],          "F8",    lazy.spawn("playerctl next")),
 ]
 
 mouse = [

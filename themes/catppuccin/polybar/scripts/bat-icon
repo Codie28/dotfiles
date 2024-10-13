@@ -1,7 +1,10 @@
 #!/bin/bash
 
-bat=`cat /sys/class/power_supply/BAT1/capacity`
-status=`cat /sys/class/power_supply/BAT1/status`
+BAT_CLASS='BAT1'
+
+
+bat=`cat /sys/class/power_supply/$BAT_CLASS/capacity`
+status=`cat /sys/class/power_supply/$BAT_CLASS/status`
 
 if [[ "$status" == "Discharging" ]]; then
   case `expr $(echo $bat ) / 10` in

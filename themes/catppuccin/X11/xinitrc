@@ -4,10 +4,12 @@ source ~/.config/X11/xenv
 
 autorandr --change
 xmodmap ~/.config/X11/xmodmap
-picom -f --vsync -o=0 &
+picom -f --vsync -o 0 &
 nitrogen --restore &
 dunst &
 eww daemon &
+clight &
+pulseaudio &
 
 # a good place to put these i think
 # Twas too broken
