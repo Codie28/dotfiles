@@ -6,11 +6,8 @@
 export ZDOTDIR=$HOME/.config/zsh
 
 if [[ $(tty) == '/dev/tty1' ]] then
-  $HOME/mybin/x
-fi
-
-if [[ $(tty) == '/dev/tty2' ]] then
-  Hyprland
+  # TODO: replcae `dots` with a better solution
+  $HOME/dots/mybin/wmstart
 fi
 
 # ttys suck

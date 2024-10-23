@@ -9,7 +9,7 @@ nitrogen --restore &
 dunst &
 eww daemon &
 clight &
-pulseaudio &
+pulseaudio & disown
 
 # a good place to put these i think
 # Twas too broken
