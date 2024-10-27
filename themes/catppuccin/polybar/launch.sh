@@ -12,5 +12,5 @@ killall -q polybar
 #   done
 # else
   echo "Polybar launched..."
-  polybar top 2>&1 | tee -a /tmp/polybar.log & disown
+  polybar -r top 2>&1 | tee -a /tmp/polybar.log & disown
 # fi
