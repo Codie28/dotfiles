@@ -63,6 +63,10 @@ groups = (
               Match(wm_class="vesktop")
           ],
     ),
+    Group('󰠮', label='n',
+          layout='monadtall',
+          screen_affinity=1,
+    ),
 )
 
 keys.extend(
