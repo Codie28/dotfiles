@@ -6,6 +6,9 @@ add_to_path() {
   fi
 }
 
+add_to_path right /home/codie/.deno/bin
+
 add_to_path left  $HOME/mybin
+add_to_path left  $HOME/mybin/nya
 
 # vim: set filetype=bash

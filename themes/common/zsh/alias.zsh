@@ -29,3 +29,6 @@ alias godot="godot --rendering-driver opengl3"
 #List Symlinks
 alias lsym="ls -la | grep '\->'"
 
+
+# Auto sudos
+# alias pacman="sudo pacman"

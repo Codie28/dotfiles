@@ -82,6 +82,12 @@ keys = [
     # Key([],          "F6",    lazy.spawn("playerctl play-pause")),
     # Key([],          "F7",    lazy.spawn("playerctl stop")),
     # Key([],          "F8",    lazy.spawn("playerctl next")),
+
+    Key([MOD, SFT], "y",      lazy.layout.section_up()),
+    Key([MOD, SFT], "u",      lazy.layout.section_down()),
+
+    Key([MOD, SFT], "s",      lazy.spawn("flameshot gui")),
+
 ]
 
 mouse = [

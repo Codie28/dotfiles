@@ -1,3 +1,15 @@
 #!/bin/bash
 
-~/.config/thrc/entry.s
+sdir=`dirname $0`
+option=`$sdir/switch list | cat - <(echo -e "--- Other Options ---\npower menu") | fzf`
+if [[ $option == "power menu" ]]; then
+  poweropt=`echo -e "shutdown\nreboot\nreturn" | fzf`
+  case "$poweropt" in
+    "shutdown") shutdown now ;;
+    "reboot"  ) reboot ;;
+    "return"  ) exit ;;
+  esac
+elif $sdir/switch list | grep $option; then
+  $sdir/switch $option
+  ~/.config/thrc/entry.sh
+fi

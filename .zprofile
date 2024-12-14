@@ -7,8 +7,12 @@ export ZDOTDIR=$HOME/.config/zsh
 
 if [[ $(tty) == '/dev/tty1' ]] then
   # TODO: replcae `dots` with a better solution
+  
+  while true; do
   $HOME/dots/mybin/wmstart
+  done
 fi
 
 # ttys suck
-source $HOME/.config/zsh/.zshrc
+# better not do this and sign out then login again
+# source $HOME/.config/zsh/.zshrc

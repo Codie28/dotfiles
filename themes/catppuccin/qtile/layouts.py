@@ -25,7 +25,7 @@ layouts = [
         urgent_fg=COLORS["treetab_urgent_fg"][COLORSCHEME],
         panel_width=230,
         place_right=True,
-        sections=['uwu :3']
+        sections=['uwu :3', 'socials uwu']
     ),
 ]
 

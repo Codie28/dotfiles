@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+dir=`dirname $0`
+
+case "$1" in
+  "switch") bash $dir/../switch $2 $3;;
+  *) echo "owo what's this" ;;
+esac

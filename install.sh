@@ -7,6 +7,7 @@ packages() {
 	sudo pacman -Sy --needed python python-setuptools
 
 	if [[ ! -d "$HOME/git/yay" ]]; then
+    pacman -Sy --needed git
 		git clone https://aur.archlinux.org/yay-bin.git $HOME/git/yay
 		cd $HOME/git/yay
 		makepkg -si
@@ -35,3 +36,8 @@ mkdir $HOME/.config
 
 QTILE_THEME_HOME=.qtheme ~/mybin/switch strap
 QTILE_THEME_HOME=.qtheme ~/mybin/switch catppuccin
+
+
+multimon_setup(){
+  sudo pacman -S autorandr xorg-xrandr
+}

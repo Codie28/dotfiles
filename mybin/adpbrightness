@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if pgrep -x clight > /dev/zero; then
+  echo true
+  pkill -x clight
+  brightnessctl set 100%
+else
+  echo false
+  clight & disown
+fi

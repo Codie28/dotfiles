@@ -19,4 +19,7 @@ sudo echo
 sudo pacman -Syyu --noconfirm
 yes | LANG=C yay  --answerdiff None --answerclean None --mflags "--noconfirm" -Syyu
 
+# removing uneeded packages (hopefuly...)
+pacman -R $(pacman -Qdt | awk '{print $1}') 
+
 shutdown

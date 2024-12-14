@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+LAUNCH_FOLDERS=`echo ~/projects ~/personal ~/work ~/playground`
+
+if [[ -n $1 ]] then
+  selected=$1
+else
+  selected=`find $LAUNCH_FOLDERS -maxdepth 1 -mindepth 1 -type d | sed 's/\/home\/codie\//launch /g' | sort -r | fzf --tmux top,70%,45`
+fi
+
+if [[ -z $selected ]] then
+  exit 0
+fi
+
+path=`echo $HOME/$selected | sed 's/launch //g'`
+
+echo $path
+echo $selected
+tmux new-session -ds $selected -c $path
+
+# tmux new-window './launch.sh' -n "launh"

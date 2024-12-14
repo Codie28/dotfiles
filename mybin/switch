@@ -3,6 +3,9 @@
 THEMES_DIR=$HOME/dots/themes
 CONFIG=".config"
 
+# so i can be sure all envs are loaded correctly
+source $HOME/$CONFIG/X11/xenv
+
 sw_strap() {
   mkdir $QTILE_THEME_HOME
   echo "catppuccin" >> $QTILE_THEME_HOME/theme
@@ -78,6 +81,11 @@ sw_reload() {
     *         ) echo unknown app! ;;
   esac
 
+}
+
+sw_forceapply() {
+  sw_clean $1 
+  sw_apply $1
 }
 
 if [[ -d $QTILE_THEME_HOME ]]; then
@@ -171,6 +179,7 @@ case "$1" in
     sw_clean common
     sw_clean $PREV
     ;;
+  "force"   ) sw_forceapply $2 ;;
   "cat"     ) sw_catppuccin_theme $2 ;;
   "reload"  ) sw_reload $2 ;;
   *         ) sw_switch $1;;

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# inentional space for a nasty fix
+ADDONS=`printf "cdeck at-a-glance ji "`
+
+ad_list() {
+  for addon in $ADDONS; do
+    if [ -d "$HOME/personal/$addon" ]; then
+      printf "[+] "
+    else
+      printf "[-] "
+    fi
+    echo $addon
+  done
+}
+
+ad_install() {
+  if [[ -z "$1" ]]; then
+    echo no addon was given
+  elif echo $ADDONS | grep "$1 "; then
+    mkdir -p $HOME/personal/$1
+    git clone https://github.com/Codie28/$1.git $HOME/personal/$1
+  else
+    echo unknown addon
+  fi
+}
+
+
+case "$1" in
+  "list") ad_list;;
+  "install") ad_install $2;;
+  *) echo uw;;
+esac
